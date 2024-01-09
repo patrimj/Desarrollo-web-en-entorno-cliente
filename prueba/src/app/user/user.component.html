@@ -1,0 +1,10 @@
+@if (iniciado) {
+    <p>Has iniciado sesión como {{nombre}}</p>
+    <button (click)="iniciado=false">Cerrar sesion</button>
+}@else {
+    <p>Inicia sesion</p>
+    <button (click)="iniciado=true">Inicia sesion</button>
+
+}
+
+
