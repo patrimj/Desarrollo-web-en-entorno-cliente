@@ -1,0 +1,21 @@
+<div id="body">
+
+    <p>{{ranking}}</p>
+    @if (abierto1) {
+        <p>Hola</p>
+    }@else {
+        <img src="../../assets/1.jpeg" (click)="alerta1()">
+    }
+    <p>{{misdatos}}</p>
+    @if (abierto2) {
+        <p>Hola</p>
+    }@else {
+        <img src="../../assets/2.jpeg" (click)="alerta2()">
+    }
+    <p>{{jugar}}</p>
+    @if (abierto3) {
+        <p>Hola</p>
+    }@else {
+        <img src="../../assets/3.jpeg" (click)="alerta3()">
+    }
+</div>

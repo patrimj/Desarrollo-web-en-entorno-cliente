@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+#header{
+    text-align: center;
+    background-color: aqua;
+    padding: 20px;
+}
+#body{
+    text-align: center;
+    background-color: rgb(76, 0, 255);
+    padding: 20px;
+}
+#footer{
+    text-align: center;
+    background-color: rgb(204, 0, 255);
+
+}
+
+img {
+    padding: 20px;
+    text-align: center;
+    height: 70px;
+}
+
+
