@@ -1,0 +1,12 @@
+<p>Ranking</p>
+
+@for (ranking of rankings; track ranking.Id) {
+    <ul>
+        <p>Jugador con Id:
+        <a routerLink="ranking">{{ranking.Id}}</a></p>
+        <p>Nombre:
+        <a routerLink="ranking">{{ranking.nombre}}</a></p>
+        <p>Puntos:
+        <a routerLink="ranking">{{ranking.puntos}}</a></p>
+    </ul>
+}
