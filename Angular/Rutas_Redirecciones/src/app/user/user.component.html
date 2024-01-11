@@ -1,0 +1,8 @@
+
+@if (estaLoggeado){
+    <p>Has iniciado Sesión: {{nombre}}</p>
+} @else {
+    <button (click)="estaLoggeado=true">Inicia Sesion</button>
+}
+
+
