@@ -17,7 +17,7 @@ export class DatosComponent {
     email: new FormControl(''),
   });
 
-  //ACCEDER A LOS VQALORES DE FORMGROUP
+  //ACCEDER A LOS VALORES DE FORMGROUP
   handleSubmit() {
     alert(
       'Nombre:' + this.profileForm.value.nombre +  ' , ' + 'Email:' + this.profileForm.value.email +  ' , ' + 'Nick:' + this.profileForm.value.nick +  ' , ' + 'Apellidos:' + this.profileForm.value.apellidos

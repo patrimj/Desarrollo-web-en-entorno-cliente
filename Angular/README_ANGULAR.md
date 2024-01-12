@@ -85,8 +85,105 @@ export class BodyComponent {
 <a routerLink="jugar"><img src="../../assets/3.png" (click)="alerta3()"></a>
 ```
 
+## Formularios
+Se utiliza para recoger datos de los usuarios. 
+
+- Ejemplo: 
+
+```datos.component.ts```
+```typescript
+//IMPORTAMOS REACTIVEFORMS, FORMCONTROL Y FORMGROUP
+import { Component } from '@angular/core';
+import {ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 
 
+@Component({
+  selector: 'app-datos',
+  standalone: true,
+  //IMPORTAMOS REACTIVEFORMSMODULE
+  imports: [ReactiveFormsModule],
+  templateUrl: './datos.component.html',
+  styleUrl: './datos.component.css'
+})
+
+/*-----------------------------------------------
+CREAMOS EL FORMGROUP
+- profileForm: es el nombre del formulario
+- new FormGroup: es el nuevo formulario
+- new FormControl: son los campos del formulario
+- (''): es el valor por defecto de los campos
+-------------------------------------------------*/
+
+export class DatosComponent {
+  profileForm = new FormGroup({
+    nombre: new FormControl(''),
+    apellidos: new FormControl(''),
+    nick: new FormControl(''),
+    email: new FormControl(''),
+  });
+
+/*-----------------------------------------------------------------------
+ACCEDEMOS A LOS VALORES DE FORMGROUP
+- handleSubmit: es el nombre de la función
+- alert: es para mostrar los valores del formulario
+- this.profileForm.value: es para acceder a los valores del formulario
+
+------------------------------------------------------------------------*/
+
+  handleSubmit() {
+    alert(
+      'Nombre:' + this.profileForm.value.nombre +  ' , ' + 'Email:' + this.profileForm.value.email +  ' , ' + 'Nick:' + this.profileForm.value.nick +  ' , ' + 'Apellidos:' + this.profileForm.value.apellidos
+    );
+  }
+}
+
+```
+  
+```datos.component.html```
+```html
+<h2>Formulario de mis datos</h2>
+
+<!-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- [formGroup]="profileForm": es para enlazar el formulario con el html
+- (ngSubmit)="handleSubmit()": es para que cuando se envíe el formulario, se ejecute la función handleSubmit()
+- formControlName="nombre": es para enlazar los campos del formulario con el html, 
+  es decir, que cuando se escriba en el campo del formulario, se escriba en el html, ejemplo: <input type="text" formControlName="nombre" /> esto es lo mismo que <input type="text" value="nombre" /> 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<form [formGroup]="profileForm" (ngSubmit)="handleSubmit()"> 
+    <label>
+        Nombre
+        <input type="text" formControlName="nombre" />
+    </label>
+    <label>
+        Apellido
+        <input type="text" formControlName="apellidos" />
+    </label>
+    <label>
+        Nick
+        <input type="text" formControlName="nick" />
+    </label>
+    <label>
+        Email
+        <input type="email" formControlName="email" />
+    </label>
+    <button type="submit">Submit</button>
+</form>
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+
+<h2>Manejar la actualización del formulario</h2>
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- profileForm.value.nombre: es para acceder a los valores del formulario, 
+  es decir, que cuando se escriba en el campo del formulario, se escriba en el html, ejemplo: <p>Nombre: {{ profileForm.value.nombre }}</p> esto es lo mismo que <p>Nombre: {{ nombre }}</p> 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<p>Nombre: {{ profileForm.value.nombre }}</p>
+<p>Apellido: {{ profileForm.value.apellidos }}</p>
+<p>Nick: {{ profileForm.value.nick }}</p>
+<p>Email: {{ profileForm.value.email }}</p>
+```
 
 # DOCUMENTACIÓN de ANGULAR
 
