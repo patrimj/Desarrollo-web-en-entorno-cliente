@@ -1,1 +1,27 @@
-<p>datos works!</p>
+<h2>Formulario de mis datos</h2>
+
+<form [formGroup]="profileForm" (ngSubmit)="handleSubmit()"> 
+    <label>
+        Nombre
+        <input type="text" formControlName="nombre" />
+    </label>
+    <label>
+        Apellido
+        <input type="text" formControlName="apellidos" />
+    </label>
+    <label>
+        Nick
+        <input type="text" formControlName="nick" />
+    </label>
+    <label>
+        Email
+        <input type="email" formControlName="email" />
+    </label>
+    <button type="submit">Submit</button>
+</form>
+...
+<h2>Manejar la actualización del formulario</h2>
+<p>Nombre: {{ profileForm.value.nombre }}</p>
+<p>Apellido: {{ profileForm.value.apellidos }}</p>
+<p>Nick: {{ profileForm.value.nick }}</p>
+<p>Email: {{ profileForm.value.email }}</p>

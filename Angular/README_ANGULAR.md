@@ -25,35 +25,74 @@ ng serve --open
 ```bash
 ng generate component nuevo-componente
 ```
-
-## routerlink 
-- para navegar en html
-- ```<a routerLink="/ruta">Inicio</a>```
-
 # Apuntes de Angular
+
+## RouterLink 
+Se utiliza para navegar en htmls, se colocará en las pantallas que se dirijan a otras pantallas, y no en las pantallas que no lleven a ninguna parte.
+
+
+- Ejemplo: 
+
+```app.routes.ts```
+```typescript
+//IMPORTAMOS ROUTES, Y LOS COMPONENTES QUE VAMOS A UTILIZAR COMO RUTAS
+import { Routes } from '@angular/router';
+import { BodyComponent } from './body/body.component';
+import { RankingComponent } from './ranking/ranking.component';
+import { DatosComponent } from './datos/datos.component';
+import { JugarComponent } from './jugar/jugar.component';
+import { AppComponent } from './app.component';
+
+/*-------------------------------------------------------------------------------------
+CREAMOS LAS RUTAS:
+- Routes: es un array de objetos, que contiene las rutas
+- '' : es la ruta principal, que se va a redirigir a /home
+- pathMatch: es para que la ruta principal se redirija a /home
+- path: es el nombre de la ruta
+- component: es el componente que se va a utilizar
+*** Debemos poner 'home/' en las rutas, porque si no, no funcionan las rutas hijas ***
+---------------------------------------------------------------------------------------*/
+
+export const routes: Routes = [
+    {path: '', pathMatch: 'full', redirectTo: '/home'},
+    {path: 'home', component: BodyComponent},
+    {path: 'home/ranking', component: RankingComponent},
+    {path: 'home/datos', component: DatosComponent},
+    {path: 'home/jugar', component: JugarComponent},
+];
+```
+
+```body.component.ts```
+```typescript
+//IMPORTAMOS ROUTERLINK
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'app-body',
+  standalone: true,
+  imports: [RouterLink],
+  templateUrl: './body.component.html',
+  styleUrl: './body.component.css'
+})
+export class BodyComponent {
+}
+```
+  
+```body.component.html```
+```html
+<!--LINKEAMOS CON LA ETIQUETA <routerLink = "nombre de la ruta"-->
+<a routerLink="jugar"><img src="../../assets/3.png" (click)="alerta3()"></a>
+```
+
+
+
+
+# DOCUMENTACIÓN de ANGULAR
 
 ## MÓDULOS
 
-- Cada aplicación en Angular tiene un módulo raíz, convencionalmente nombrado AppModule, que proporciona el mecanismo de arranque que inicia la aplicación. Una aplicación generalmente contiene muchos módulos funcionales.
-- Cada aplicación Angular tiene al menos una clase NgModule, el módulo raíz, que se llama convencionalmente AppModule y reside en un archivo llamado app.module.ts. Inicia tu aplicación cargando el NgModule raíz.
 
-src/app/app.module.ts
-
-```typescript
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-@NgModule({
-  imports:      [ BrowserModule ],
-  providers:    [ Logger ],
-  declarations: [ AppComponent ],
-  exports:      [ AppComponent ],
-  bootstrap:    [ AppComponent ]
-})
-export class AppModule { }
-
-//Aquí se incluye AppComponent en la lista de exports como ilustración; en realidad no es necesario en este ejemplo.
-//Un NgModule raíz no tiene ninguna razón para exportar nada porque otros módulos no necesitan importar el NgModule raíz.
-```
 
 ## COMPONENTES
 
@@ -102,9 +141,4 @@ export class AppComponent {
     ```
 - ```export``` es para exportar la clase para que se pueda utilizar en otros componentes.
 - ```@Input()``` es para recibir datos de otro componente.
-  - Ejemplo: ``````
-- ```@Output()``` es para enviar datos a otro componente.
-- ```@ViewChild()``` es para recibir datos de un elemento html.
-- ```@ViewChildren()``` es para recibir datos de varios elementos html.
-- ```@HostListener()``` es para escuchar eventos de un elemento html.
-    - Ejemplo: ```@HostListener('click', ['$event']) onClick($event) { ... }```
+
