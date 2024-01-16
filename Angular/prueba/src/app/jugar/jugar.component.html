@@ -1,1 +1,7 @@
-<p>jugar works!</p>
+<div>
+    {{ operacion.num1 }} {{ operacion.operacion }} {{ operacion.num2 }} = ?
+    <input [(ngModel)]="respuestaUsuario.value" placeholder="Ingresa tu respuesta aquí">
+
+    <button (click)="validarRespuesta()">Validar</button>
+    <p>Tiempo: {{ tiempoRestante$ | async | date:'mm:ss' }}</p>
+</div>
