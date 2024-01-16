@@ -239,3 +239,132 @@ export class AppComponent {
 - ```export``` es para exportar la clase para que se pueda utilizar en otros componentes.
 - ```@Input()``` es para recibir datos de otro componente.
 
+# TYPESCRIPT
+
+## 1. Generar interfaces
+
+```bash
+ng generate interface interfaces/nombre-de-la-interfaz
+```
+
+  - Ejemplo: ```ng generate interface interfaces/usuario```
+  - En las interfaces se deben poner los datos que se van a utilizar en la aplicación, por ejemplo, si se va a utilizar un usuario, se deben poner los datos que va a tener el usuario, como el nombre, apellidos, email, etc.
+  ``` typescript
+  // usuario.ts
+  export interface Usuario {
+    nombre: string;
+    apellidos: string;
+    email: string;
+    nick: string;
+    genero: Generos;
+  }
+
+  export enum Generos {
+    masculino = 'masculino',
+    femenino = 'femenino'
+  }
+  ```
+  - Puedes crear un objeto a partir de la interfaz
+
+## 2. Importar la clase de la interfaz
+
+Cuando hay algo ya predefinido, como el genero masculino/femenino, se puede crear una clase para que se pueda utilizar en cualquier parte de la aplicación.
+
+`app.component.ts`
+```typescript
+import { Usuario, Generos } from './interfaces/usuario';
+
+export class AppComponent {
+  usuario: Usuario = {
+    nombre: 'Juan',
+    apellidos: 'Perez',
+    edad: 2,
+    genero: Generos.masculino
+
+  };
+} /// si en la interfaz tenemos una id?, si la eliminamos de la class AppComponent, no importa
+```
+`app.component.html`
+```html
+<p>Nombre: {{ usuario.nombre }}</p>
+<p>Apellidos: {{ usuario.apellidos }}</p>
+<p>Edad: {{ usuario.edad }}</p>
+```
+
+## 3. Enum
+
+```bash
+ng generate enum enums/generos
+```
+
+Creamos la carpeta `enums` y dentro de ella el archivo `generos.ts`
+```typescript
+export enum Generos {
+  masculino = 'masculino',
+  femenino = 'femenino'
+}
+```
+En la interfaz `usuario.ts` importamos el enum
+```typescript
+import { Generos } from '../enums/generos';
+
+export interface Usuario {
+  nombre: string;
+  apellidos: string;
+  email: string;
+  nick: string;
+  genero: Generos;
+}
+```
+En el componente `app.component.ts` importamos el enum
+```typescript
+import { Usuario, Generos } from './interfaces/usuario';
+```
+Y lo utilizamos
+```typescript
+export class AppComponent {
+  usuario: Usuario = {
+    nombre: 'Juan',
+    apellidos: 'Perez',
+    edad: 2,
+    genero: Generos.masculino
+
+  };
+}
+```
+## 4. Clases
+
+```bash
+ng generate class clases/usuario
+```
+Creamos la carpeta `clases` y dentro de ella el archivo `usuario.ts`
+
+*** meter lo que puso de nueva york ***
+
+- Importamos la clase en app.component.ts
+```typescript
+import { Usuario } from './clases/usuario';
+
+export class AppComponent {
+  crearUsuario() {
+    const usuario: Usuario = new Usuario('Juan', 'Perez', 2, Generos.masculino);
+    usuario.edad = 3;
+    console.log(usuario); // esto imprimira el objeto usuario + los datos que le hemos añadido, ejemplo: {nombre: "Juan", apellidos: "Perez", edad: 3, genero: "masculino"}
+  localStorage.setItem('usuario', JSON.stringify(usuario)); // esto guardara el objeto usuario en el localstorage // no se suele hacer en la clase es para ir rapido
+  const serializableObj = localStorage.getItem('usuario'); 
+  if (serializableObj)
+  {
+    const usuario: Usuario = JSON.parse(serializableObj) as Usuario; 
+    usuario.edad = 30;
+    console.log(usuario); //Esto imprimira el objeto usuario + los datos que le hemos añadido, ejemplo: {nombre: "Juan", apellidos: "Perez", edad: 30, genero: "masculino"}
+  }
+  }
+}
+```
+
+## 5. Funciones
+```typescript
+function sumar(a: number, b: number): number {
+  return a + b;
+}
+```
