@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./jugar.component.css']
 })
 export class JugarComponent {
-  operacionStr: string = ''; 
+  ope: string = ''; 
   respuestaUsuario: number = 0;
   resultado: number = 0; 
 
@@ -21,15 +21,15 @@ export class JugarComponent {
     switch (operacion) {
       case 0:
         this.resultado = num1 + num2;
-        this.operacionStr = num1 + " + " + num2 + " = ";
+        this.ope = num1 + " + " + num2 + " = ";
         break;
       case 1:
         this.resultado = num1 - num2;
-        this.operacionStr = num1 + " - " + num2 + " = ";
+        this.ope = num1 + " - " + num2 + " = ";
         break;
       case 2:
         this.resultado = num1 * num2;
-        this.operacionStr = num1 + " * " + num2 + " = ";
+        this.ope = num1 + " * " + num2 + " = ";
         break;
       default:
         this.resultado = 0;
