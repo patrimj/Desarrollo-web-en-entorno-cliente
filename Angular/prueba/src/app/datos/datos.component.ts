@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
-import { UsuarioInterface } from '../interfaces/interfacesUsuario';
+import { UsuarioInterface } from '../interfaces/interfacesTodas';
 
 @Component({
   selector: 'app-datos',
@@ -9,15 +9,15 @@ import { UsuarioInterface } from '../interfaces/interfacesUsuario';
   templateUrl: './datos.component.html',
   styleUrl: './datos.component.css'
 })
-export class DatosComponent {
+export class DatosComponent  {
   profileForm = new FormGroup({
+    id: new FormControl({value: '1', disabled: true}),
     nombre: new FormControl(''),
     apellidos: new FormControl(''),
     nick: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
-    puntos: new FormControl('0'),
-  });
+   });
 
   //ACCEDER A LOS VALORES DE FORMGROUP
   handleSubmit() {
@@ -26,21 +26,21 @@ export class DatosComponent {
   }
 
   crearUsuario() {
-    const usuario = new Usuario(
-      4, 
-      this.profileForm.value.nombre || '',
-      this.profileForm.value.apellidos || '',
-      this.profileForm.value.nick || '',
-      this.profileForm.value.email || '',
-      this.profileForm.value.password   || '',
-      0  
-    );
+
+    var usuario: UsuarioInterface = {
+      id: 1 || 0, 
+      nombre: this.profileForm.value.nombre || '',
+      apellidos: this.profileForm.value.apellidos || '',
+      nick: this.profileForm.value.nick || '',
+      email: this.profileForm.value.email || '',
+      password: this.profileForm.value.password   || '',
+    };
 
     localStorage.setItem('usuario', JSON.stringify(usuario));
     const serializedObj = localStorage.getItem('usuario');
     if (serializedObj) {
-      const usuario = JSON.parse(serializedObj) as UsuarioInterface;
-      console.log(usuario);
+      const usuarioJSON = JSON.parse(serializedObj) as UsuarioInterface;
+      console.log(usuarioJSON);
     }
   }
 }

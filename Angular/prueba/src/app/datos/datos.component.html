@@ -1,12 +1,13 @@
 <h2>Formulario de mis datos</h2>
 
-<form [formGroup]="profileForm" (ngSubmit)="handleSubmit()"> 
+<form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+
     <label>
         Nombre
-        <input type="text" formControlName="nombre" />
+        <input type="text" formControlName="nombre"  />
     </label>
     <label>
-        Apellido
+        Apellidos
         <input type="text" formControlName="apellidos" />
     </label>
     <label>
@@ -17,11 +18,20 @@
         Email
         <input type="email" formControlName="email" />
     </label>
-    <button type="submit">Submit</button>
+    <label>
+        Password
+        <input type="password" formControlName="password" />
+    </label>
+
+    <button type="submit">Guardar datos</button>
 </form>
-...
-<h2>Manejar la actualización del formulario</h2>
-<p>Nombre: {{ profileForm.value.nombre }}</p>
-<p>Apellido: {{ profileForm.value.apellidos }}</p>
-<p>Nick: {{ profileForm.value.nick }}</p>
-<p>Email: {{ profileForm.value.email }}</p>
+
+<h2>Mis datos</h2>
+
+<ul>
+    <li>Nombre: {{ profileForm.value.nombre }}</li>
+    <li>Apellidos: {{ profileForm.value.apellidos }}</li>
+    <li>Nick: {{ profileForm.value.nick }}</li>
+    <li>Email: {{ profileForm.value.email }}</li>
+    <li>Password: {{ profileForm.value.password }}</li>
+</ul>    

@@ -1,10 +1,15 @@
 export interface UsuarioInterface {
-    id?:  string;
+    id:  number;
     nombre: string;
     apellidos: string;
     nick: string;
     email: string;
     password: string;
-    puntos: string;
 
+  }
+
+  export interface RankingInterface {
+    id_partida: number;
+    nick_usuario: string;
+    puntos: number;
   }

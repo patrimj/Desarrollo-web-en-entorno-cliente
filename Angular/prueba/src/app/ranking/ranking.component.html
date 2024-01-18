@@ -1,12 +1,12 @@
 <p>Ranking</p>
 
-@for (ranking of rankings; track ranking.Id) {
+@for (rank of ranking; track rank.Id) {
     <ul>
-        <p>Jugador con Id:
-        <a routerLink="ranking">{{ranking.Id}}</a></p>
-        <p>Nombre:
-        <a routerLink="ranking">{{ranking.nombre}}</a></p>
+        <p>Partida con Id:
+        <a routerLink="ranking">{{rank.Id}}</a></p>
+        <p>Nick:
+        <a routerLink="ranking">{{rank.nick}}</a></p>
         <p>Puntos:
-        <a routerLink="ranking">{{ranking.puntos}}</a></p>
+        <a routerLink="ranking">{{rank.puntos}}</a></p>
     </ul>
 }

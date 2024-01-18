@@ -1,47 +1,28 @@
-import { Component } from '@angular/core';
-import { usuario } from '../clases/usuario';
-
+import { Component, OnInit } from '@angular/core';
+import { RankingInterface } from '../interfaces/interfacesTodas';
 @Component({
   selector: 'app-ranking',
+  standalone: true,
+  imports: [],
   templateUrl: './ranking.component.html',
   styleUrls: ['./ranking.component.css']
 })
-export class RankingComponent {
-  
-  rankings = [
-    {
-      Id: 1,
-      nombre: 'Patricia', 
-      puntos: 100
-    },
-    {
-      Id: 2,
-      nombre: 'Jaime',
-      puntos: 200
-    },
-    {
-      Id: 3,
-      nombre: 'Elena',
-      puntos: 300
+export class RankingComponent implements OnInit {
+
+  ranking: any[] = [];
+  public rank: RankingInterface[] = [];
+
+
+  resultados() {
+    const serializarObj = localStorage.getItem('ranking');
+
+    if (serializarObj) {
+      const ranking = JSON.parse(serializarObj);
+      return ranking;
     }
-  ];
-
-  constructor() {
-    usuario = new Usuario(
-      JSON.parse(localStorage.getItem('id') || '0'),
-      localStorage.getItem('nombre') || '',
-      '', 
-      '', 
-      '', 
-      '', 
-      JSON.parse(localStorage.getItem('puntos') || '0')
-    );
-
-    this.rankings.push({
-      Id: this.usuario.id,
-      nombre: this.usuario.nombre,
-      puntos: this.usuario.puntos
-    });
   }
 
+  ngOnInit() {
+    this.ranking = this.resultados();
+  }
 }

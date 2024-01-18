@@ -11,7 +11,7 @@ import { JugarComponent } from './jugar/jugar.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, BodyComponent, RouterLink, DatosComponent, RankingComponent, JugarComponent ], // importarlo aqui
+  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, BodyComponent, RouterLink, DatosComponent,  JugarComponent ], // importarlo aqui
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
