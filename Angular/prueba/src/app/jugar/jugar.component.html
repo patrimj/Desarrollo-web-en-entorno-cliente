@@ -1,6 +1,22 @@
-<div>
-    <button (click)="generarOperacionAleatoria()">Generar Operación</button>
-    <p>{{ ope }}</p>
-    <input [(ngModel)]="respuestaUsuario" type="number" placeholder="Resultado">
-    <button (click)="verificarRespuesta()">Resuelvo</button>
+<div class="container">
+  <h1 class="text-center my-4 text-primary">CALCULADORA</h1>
+  <div class="row justify-content-center">
+      <div class="col-12 col-md-6 bg-light p-4 rounded">
+          <div class="mb-3">
+              <p class="text-center fs-4 text-success">{{ ope }}</p>
+          </div>
+          <div class="mb-3">
+              <input [(ngModel)]="respuestaUsuario" type="text" class="form-control" placeholder="Resultado">
+          </div>
+          <div class="mb-3">
+              <button (click)="verificarRespuesta()" class="btn btn-primary w-100">Resuelvo</button>
+          </div>
+          <div class="mb-3">
+              <p class="text-center text-info">Tiempo: 00:{{tiempo}}</p>
+          </div>
+          <div class="mb-3">
+              <p class="text-center text-warning">Acertadas: {{contadorCorrectas}}</p>
+          </div>
+      </div>
   </div>
+</div>

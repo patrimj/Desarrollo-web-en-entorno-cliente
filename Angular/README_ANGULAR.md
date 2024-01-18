@@ -368,3 +368,105 @@ function sumar(a: number, b: number): number {
   return a + b;
 }
 ```
+
+## 6. Servicios
+
+### (1) Generamos la interface
+- Para generar interfaces usaremos el pluggin de Paste JSON as Code y crearemos una carpeta interfaces dentro de la carpeta app y en ella una interface nueva ``pokemon.js``, en ella haremos ``command + shift + p`` > ``Paste JSON as Code`` > copiaremos todo el texto que sacamos de https://pokeapi.co/api/v2/pokemon/2 y lo pegaremos en el pluggin, nos generará una interfaz con todos los datos que nos devuelve la api. 
+
+### (2) Configuramos ``app.config.ts``
+
+```typescript
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+
+import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
+
+export const appConfig: ApplicationConfig = {
+  providers: [provideRouter(routes),provideHttpClient()]
+};
+```
+### (3) Creamos un ``environment`` --> envirorment.ts / environment.development.ts
+
+```bash
+ng generate environments 
+```
+- En el archivo environment.ts
+``` typescript
+export const environment = {
+    baseUrl:'https://pokeapi.co/api/v2/pokemon/2'
+};
+```
+
+### (4) Creamos un ``servicio``
+```bash
+ng generate service servicios/nombre-del-servicio
+ng generate service servicios/pokemon
+```
+
+```typescript
+import { HttpClient } from '@angular/common/http'; // importamos el HttpClient para poder hacer peticiones http
+import { Injectable } from '@angular/core'; // importamos el Injectable para poder inyectar el servicio en otros componentes
+import { Observable, catchError,of } from 'rxjs'; // importamos el Observable para poder devolver un observable, catchError para poder capturar errores y of para poder devolver un observable vacio
+import {Pokemon} from '../interfaces/pokemon' // importamos la interfaz pokemon
+import { environment } from '../../environments/environment'; // importamos el environment para poder acceder a la url de la api
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class PokemonService {
+
+  constructor(private http: HttpClient) { } // inyectamos el HttpClient
+
+  private baseUrl : string = environment.baseUrl // creamos una variable privada que contiene la url de la api
+
+  getPokemon(): Observable<Pokemon | undefined> { // creamos una funcion que devuelve un observable de tipo Pokemon o undefined
+    return this.http.get<Pokemon>(this.baseUrl).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
+}
+```
+> [!NOTE]
+> Observable es un objeto que representa una fuente de datos, y puede ser de cualquier tipo, en este caso es de tipo Pokemon, pero podria ser de tipo string, number, etc.
+
+### (5) Importamos el servicio en el ``app.component.ts``
+```typescript
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { PokemonService } from './servicios/pokemon.service';
+import { Pokemon } from './interfaces/pokemon';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet,RouterLink,OtraComponent,PrecargaComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  constructor(private pokemonService : PokemonService){}
+  pokemon?: Pokemon
+  consultar(){
+    this.pokemonService.getPokemon().subscribe({
+      next: (poke:Pokemon | undefined) => {
+        console.log(poke)
+        this.pokemon=poke
+        
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
+}
+```
+> [!NOTE]
+> suscribe es una funcion que se ejecuta cuando el observable devuelve un valor, en este caso, cuando la api devuelve un pokemon, se ejecuta la funcion next, y cuando la api devuelve un error, se ejecuta la funcion error.
+
+

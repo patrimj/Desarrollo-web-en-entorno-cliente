@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
-
+import { UsuarioInterface } from '../interfaces/interfacesUsuario';
 
 @Component({
   selector: 'app-datos',
@@ -15,13 +15,33 @@ export class DatosComponent {
     apellidos: new FormControl(''),
     nick: new FormControl(''),
     email: new FormControl(''),
+    password: new FormControl(''),
+    puntos: new FormControl('0'),
   });
 
   //ACCEDER A LOS VALORES DE FORMGROUP
   handleSubmit() {
-    alert(
-      'Nombre:' + this.profileForm.value.nombre +  ' , ' + 'Email:' + this.profileForm.value.email +  ' , ' + 'Nick:' + this.profileForm.value.nick +  ' , ' + 'Apellidos:' + this.profileForm.value.apellidos
+    this.crearUsuario();
+    console.log('Datos Creados');
+  }
+
+  crearUsuario() {
+    const usuario = new Usuario(
+      4, 
+      this.profileForm.value.nombre || '',
+      this.profileForm.value.apellidos || '',
+      this.profileForm.value.nick || '',
+      this.profileForm.value.email || '',
+      this.profileForm.value.password   || '',
+      0  
     );
+
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+    const serializedObj = localStorage.getItem('usuario');
+    if (serializedObj) {
+      const usuario = JSON.parse(serializedObj) as UsuarioInterface;
+      console.log(usuario);
+    }
   }
 }
 

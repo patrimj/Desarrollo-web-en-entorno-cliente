@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import {Persona,Generos} from './interfaces/interfacesUsuario'
+import {Persona,Generos} from './interfaces/interfacesaplicacion'
 import { PersonaNormal,Alumno } from './clases/todas-las-clases';
 import { OtraComponent } from './navegar/otra/otra.component';
 import { PrecargaComponent } from './precarga/precarga.component';
+import { PokemonService } from './servicios/pokemon.service';
+import { Pokemon } from './interfaces/pokemon';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,22 @@ import { PrecargaComponent } from './precarga/precarga.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
+  constructor(private pokemonService : PokemonService){}
+  pokemon?: Pokemon
+  consultar(){
+    this.pokemonService.getPokemon().subscribe({
+      next: (poke:Pokemon | undefined) => {
+        console.log(poke)
+        this.pokemon=poke
+        
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
+
     persona : Persona = {
       id: '11',
       nombre: 'Francisco',     

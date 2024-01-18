@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-
+import { usuario } from '../clases/usuario';
 
 @Component({
   selector: 'app-ranking',
-  standalone: true,
-  imports: [RouterLink],
   templateUrl: './ranking.component.html',
-  styleUrl: './ranking.component.css'
+  styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent {
+  
   rankings = [
     {
       Id: 1,
@@ -26,5 +24,24 @@ export class RankingComponent {
       nombre: 'Elena',
       puntos: 300
     }
-  ]
+  ];
+
+  constructor() {
+    usuario = new Usuario(
+      JSON.parse(localStorage.getItem('id') || '0'),
+      localStorage.getItem('nombre') || '',
+      '', 
+      '', 
+      '', 
+      '', 
+      JSON.parse(localStorage.getItem('puntos') || '0')
+    );
+
+    this.rankings.push({
+      Id: this.usuario.id,
+      nombre: this.usuario.nombre,
+      puntos: this.usuario.puntos
+    });
+  }
+
 }
