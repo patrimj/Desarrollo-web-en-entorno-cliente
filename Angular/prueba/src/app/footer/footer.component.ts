@@ -9,4 +9,5 @@ import { Component, Input } from '@angular/core';
 })
 export class FooterComponent {
   nombre = 'Patricia';
+  anio = 2024;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RankingInterface } from '../interfaces/interfacesTodas';
 @Component({
   selector: 'app-ranking',
@@ -11,8 +11,8 @@ export class RankingComponent implements OnInit {
 
   ranking: any[] = [];
   rank: RankingInterface[] = [];
-  
-  resultados () {
+
+  resultados() {
     const serializarObj = localStorage.getItem('ranking');
 
     if (serializarObj) {

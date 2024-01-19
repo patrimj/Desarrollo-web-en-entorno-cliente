@@ -22,7 +22,7 @@ export class DatosComponent  {
 
    constructor(private router: Router) { } 
 
-  //ACCEDER A LOS VALORES DE FORMGROUP
+  //ACCEDER A LOS VALORES DE FORMGROUP (teoria documentación)
   handleSubmit() {
     this.crearUsuario();
     console.log('Datos Creados');
@@ -40,6 +40,7 @@ export class DatosComponent  {
       password: this.profileForm.value.password   || '',
     };
 
+    //como guardar en localstorage el usuario registrado
     localStorage.setItem('usuario', JSON.stringify(usuario));
     const serializedObj = localStorage.getItem('usuario');
     if (serializedObj) {
@@ -47,9 +48,6 @@ export class DatosComponent  {
       console.log(usuarioJSON);
     }
     alert("Datos creados correctamente");
-
-
-
   }
 }
 
