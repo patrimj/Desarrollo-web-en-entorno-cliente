@@ -1,3 +1,32 @@
 form {
-    background-color: blue;
+    margin: 0 auto;
+    width: 400px;
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    background-color: rgb(112, 52, 43);
+    color: aliceblue;
+}
+.list-group{
+    margin: 0 auto;
+    width: 400px;
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    background-color: rgb(112, 52, 43); 
+    margin-bottom: 30px;
+}
+
+.list-group-item{
+    border-radius: 1em;
+    color: rgb(0, 0, 0);
+}
+.list-group-item:hover{
+    background-color: rgb(255, 209, 209);
+    color: rgb(0, 0, 0);
+}
+h2{
+    text-align: center;
+    color: rgb(79, 31, 31);
+    padding: 30px;
 }

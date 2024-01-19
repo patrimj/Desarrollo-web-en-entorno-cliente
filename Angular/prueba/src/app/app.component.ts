@@ -11,12 +11,13 @@ import { JugarComponent } from './jugar/jugar.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, BodyComponent, RouterLink, DatosComponent,  JugarComponent ], // importarlo aqui
+  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, BodyComponent, RouterLink, DatosComponent,  JugarComponent, RankingComponent ], // importarlo aqui
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   nombre = 'Patricia  ';
+  
 }
 
 //1º importarlo > UserComponent

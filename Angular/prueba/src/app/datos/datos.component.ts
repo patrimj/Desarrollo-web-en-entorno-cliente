@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { UsuarioInterface } from '../interfaces/interfacesTodas';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-datos',
@@ -19,10 +20,13 @@ export class DatosComponent  {
     password: new FormControl(''),
    });
 
+   constructor(private router: Router) { } 
+
   //ACCEDER A LOS VALORES DE FORMGROUP
   handleSubmit() {
     this.crearUsuario();
     console.log('Datos Creados');
+    this.router.navigate(['home']);
   }
 
   crearUsuario() {
@@ -42,6 +46,10 @@ export class DatosComponent  {
       const usuarioJSON = JSON.parse(serializedObj) as UsuarioInterface;
       console.log(usuarioJSON);
     }
+    alert("Datos creados correctamente");
+
+
+
   }
 }
 

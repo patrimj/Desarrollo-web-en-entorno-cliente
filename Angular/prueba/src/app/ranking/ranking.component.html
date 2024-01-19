@@ -1,12 +1,11 @@
-<p>Ranking</p>
+<h1>Ranking</h1>
 
-@for (rank of ranking; track rank.Id) {
-    <ul>
-        <p>Partida con Id:
-        <a routerLink="ranking">{{rank.Id}}</a></p>
-        <p>Nick:
-        <a routerLink="ranking">{{rank.nick}}</a></p>
-        <p>Puntos:
-        <a routerLink="ranking">{{rank.puntos}}</a></p>
+<div class="mb-3">
+    @for (rank of ranking; track rank.id_partida) {
+    <ul class="list-group">
+        <li class=" mb-3 list-group-item">Partida con Id: {{ rank.id_partida }}</li>
+        <li class=" mb-3 list-group-item">Nick: {{ rank.nick_usuario }}</li>
+        <li class=" mb-3 list-group-item">Puntos: {{ rank.puntos }}</li>
     </ul>
-}
+    }
+</div>

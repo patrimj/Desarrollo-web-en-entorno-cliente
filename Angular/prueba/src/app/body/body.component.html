@@ -1,21 +1,29 @@
-<div id="body">
+<div id="body" class="d-flex justify-content-center align-items-center"
+    style="background-color: black no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 
-    @if (abierto1) {
-        <p>Hola</p>
-    }@else {
-        <a routerLink="ranking"><img src="../../assets/1.png" (click)="alerta1()"></a>
-    }
+    <div class="text-center">
+        <h2>{{ranking}}</h2>
+        @if (abierto1) {
+        <p class="text-center">Hola</p>
+        }@else {
+        <a routerLink="ranking" class="d-block text-center"><img src="../../assets/1.png" (click)="alerta1()"></a>
+        }
+    </div>
+    <div class="text-center">
+        <h2>{{misdatos}}</h2>
+        @if (abierto2) {
+        <p class="text-center">Hola</p>
+        }@else {
+        <a routerLink="datos" class="d-block text-center"><img src="../../assets/2.png" (click)="alerta2()"></a>
+        }
+    </div>
+    <div class="text-center">
+        <h2>{{jugar}}</h2>
+        @if (abierto3) {
+        <p class="text-center">Hola</p>
+        }@else {
+        <a routerLink="jugar" class="d-block text-center"><img src="../../assets/3.png" (click)="alerta3()"></a>
+        }
+    </div>
 
-    @if (abierto2) {
-        <p>Hola</p>
-    }@else {
-
-        <a routerLink="datos"><img src="../../assets/2.png" (click)="alerta2()"></a>
-    }
-
-    @if (abierto3) {
-        <p>Hola</p>
-    }@else {
-        <a routerLink="jugar"><img src="../../assets/3.png" (click)="alerta3()"></a>
-    }
-</div>
+</div> 

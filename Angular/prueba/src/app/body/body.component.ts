@@ -9,9 +9,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './body.component.css'
 })
 export class BodyComponent {
-    ranking = 'ranking';
-    misdatos = 'misdatos';
-    jugar = 'jugar';
+    ranking = 'Ranking';
+    misdatos = 'Datos';
+    jugar = 'Jugar';
     abierto1 = false;
     abierto2 = false;
     abierto3 = false;

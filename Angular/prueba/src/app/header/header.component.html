@@ -1,10 +1,21 @@
-@if (iniciado) {
-    <p>Has iniciado sesión como {{nombre}}</p>
-    <button (click)="iniciado=false">Cerrar sesion</button>
-}@else {
-    <button (click)="iniciado=true">Inicia sesion</button>
-}
+<div class="d-flex justify-content-between align-items-center">
+    @if (iniciado) {
+        <p>Has iniciado sesión como {{nombre}}</p>
+        <button class="btn btn-danger" (click)="iniciado=false">Cerrar sesion</button>
+    }@else {
+        <button class="btn btn-primary" (click)="iniciado=true">Inicia sesion</button>
+    }
+</div>
 
-<ul>
-    <a routerLink="home">INICIO </a>
-</ul>
+<nav  class="navbar navbar-expand-lg navbar-light ">
+    <div class="container-fluid">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+            <li class="nav-item ">
+                <a class="nav-link" routerLink="home">INICIO</a>
+                <a class="nav-link" routerLink="home/ranking">RANKING</a>
+                <a class="nav-link" routerLink="home/datos">DATOS</a>
+                <a class="nav-link" routerLink="home/jugar">JUGAR</a>
+            </li>
+        </ul>
+    </div>
+</nav>

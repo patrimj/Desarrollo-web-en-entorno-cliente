@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RankingInterface } from '../interfaces/interfacesTodas';
-import { Ranking } from '../clases/usuario';
+
 
 @Component({
   selector: 'app-jugar',
@@ -27,34 +27,36 @@ export class JugarComponent implements OnInit {
       this.router.navigate(['home/datos']);
       alert("Debes insertar datos para jugar");
     }
-
-    var num1 = Math.floor(Math.random() * 9) + 1;
-    var num2 = Math.floor(Math.random() * 9) + 1;
-    var operacion = Math.floor(Math.random() * 4);
-    switch (operacion) {
-      case 0:
-        this.resultado = num1 + num2;
-        this.ope = num1 + " + " + num2 + " = ";
-        break;
-      case 1:
-        this.resultado = num1 - num2;
-        this.ope = num1 + " - " + num2 + " = ";
-        break;
-      case 2:
-        this.resultado = num1 * num2;
-        this.ope = num1 + " * " + num2 + " = ";
-        break;
-      case 3:
-        this.resultado = Math.round(num1 / num2);
-        this.ope = num1 + " / " + num2 + " = ";
-        break;
-      default:
-        this.resultado = 0;
-        break;
-    }
+    this.operacion();
     this.temporizador();
-    this.Ranking();
   }
+
+operacion(){
+  var num1 = Math.floor(Math.random() * 9) + 1;
+  var num2 = Math.floor(Math.random() * 9) + 1;
+  var operacion = Math.floor(Math.random() * 4);
+  switch (operacion) {
+    case 0:
+      this.resultado = num1 + num2;
+      this.ope = num1 + " + " + num2 + " = ";
+      break;
+    case 1:
+      this.resultado = num1 - num2;
+      this.ope = num1 + " - " + num2 + " = ";
+      break;
+    case 2:
+      this.resultado = num1 * num2;
+      this.ope = num1 + " * " + num2 + " = ";
+      break;
+    case 3:
+      this.resultado = Math.round(num1 / num2);
+      this.ope = num1 + " / " + num2 + " = ";
+      break;
+    default:
+      this.resultado = 0;
+      break;
+  }
+}
 
   contadorCorrectas: number = 0;
 
@@ -62,7 +64,6 @@ export class JugarComponent implements OnInit {
     if (this.respuestaUsuario == this.resultado) {
       alert("Correcto");
       this.contadorCorrectas++;
-      this.puntos();
       localStorage.setItem('puntos', JSON.stringify(this.contadorCorrectas));
       this.respuestaUsuario = 0;
       this.ngOnInit();
@@ -78,6 +79,7 @@ export class JugarComponent implements OnInit {
       this.tiempo--;
       if (this.tiempo == 0) {
         alert("TIEMPOOOOOOOO ¿QUIERES VER EL RANKING?");
+        this.Ranking();
         this.router.navigate(['home/ranking']);
       }
     }, 1000);
@@ -90,52 +92,36 @@ export class JugarComponent implements OnInit {
       const ususario = JSON.parse(serializarObj);
       return ususario;
     }
+
   }
 
   partida: number = 1;
   Ranking() {
     const usuario = this.usuario();
-    const id_partida = Number(localStorage.getItem('id_partida') || 1);
-    const puntos = localStorage.getItem('puntos') || 0;
+    const usuarioJSON = JSON.parse(JSON.stringify(usuario));
+    let id_partida = Number(localStorage.getItem('id_partida') || 1);
+    const puntos = Number(localStorage.getItem('puntos') || 0);
+
+
+      id_partida++
+      localStorage.setItem('id_partida', String(id_partida));
+  
+
+    let listaRank: RankingInterface[] = JSON.parse(localStorage.getItem('ranking') || '[]');
 
     var ranking: RankingInterface = {
-      id_partida: id_partida + 1,
-      nick_usuario: usuario.nick || '',
-      puntos: 0,
+      id_partida: id_partida,
+      nick_usuario:     usuarioJSON.nick|| '',
+      puntos: puntos,
     };
-
-    let listaRank: RankingInterface[] = [];
 
     listaRank.push(ranking);
     localStorage.setItem('ranking', JSON.stringify(listaRank));
 
     let serializarObj = localStorage.getItem('ranking');
 
-
     if (serializarObj) {
       listaRank = JSON.parse(serializarObj);
     }
-
-    this.partida = ranking.id_partida;
-    localStorage.setItem('id_partida', String(ranking.id_partida));
-
-  }
-  
-  puntos() {
-    let serializarObj = localStorage.getItem('ranking');
-    let arrayRanking: Ranking[] = [];
-
-    if (serializarObj) {
-      arrayRanking = JSON.parse(serializarObj);
-    }
-
-    // Busca en el array 'arrayRanking' el objeto 'ranking' cuyo 'id' sea igual a 'this.rankingId'
-    let ranking = arrayRanking.find(r => r.id_partida === this.partida);
-
-    if (ranking) {
-      ranking.puntos += 1;
-    }
-
-    localStorage.setItem('ranking', JSON.stringify(arrayRanking));
   }
 }
