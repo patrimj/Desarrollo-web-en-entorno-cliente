@@ -469,4 +469,148 @@ export class AppComponent {
 > [!NOTE]
 > suscribe es una funcion que se ejecuta cuando el observable devuelve un valor, en este caso, cuando la api devuelve un pokemon, se ejecuta la funcion next, y cuando la api devuelve un error, se ejecuta la funcion error.
 
+## 7. Cabeceras
 
+#### Ejemplo de cabeceras:
+
+```typescript
+
+export class PokemonService {
+
+  constructor(private http: HttpClient) { } // inyectamos el HttpClient para poder hacer peticiones http
+
+  private baseUrl : string = environment.baseUrl // creamos una variable privada que contiene la url de la api
+  
+  getPokemon(): Observable<Pokemon | undefined> { // creamos una funcion que devuelve un observable de tipo Pokemon o undefined
+    const headers = new HttpHeaders({ // creamos una variable que contiene las cabeceras
+      'x-token' : this.getToken(),
+      'Otra-Cabecera': 'Valor',
+    });
+    return this.http.get<Pokemon>(this.baseUrl,{headers}).pipe( // pasamos las cabeceras a la peticion http
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
+
+  private token: string | number  = ''; // creamos una variable privada que contiene el token 
+
+  setToken(token: string): void { // creamos una funcion que recibe un token y lo guarda en la variable token
+    this.token = token; // guardamos el token en la variable token
+  }
+
+  getToken(): string | number { // creamos una funcion que devuelve el token
+    return this.token;
+  }
+
+  clearToken(): void { /// creamos una funcion que borra el token
+    this.token = '';
+  }
+}
+```
+
+> OCULTAR RUTAS
+
+```typescript
+ skipLocationChange: true;
+```
+> [!NOTE]
+> Snapshot es un objeto que contiene la información de la ruta actual, y el método skipLocationChange es para que no se muestre la ruta en la url.
+
+## 8. GET / POST / PUT / DELETE
+
+```typescript
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, catchError,of } from 'rxjs';
+import {Pokemon} from '../interfaces/pokemon'
+import { environment } from '../../environments/environment';
+import { HttpHeaders } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+
+export class PokemonService {
+
+  constructor(private http: HttpClient) { }
+
+  private baseUrl : string = environment.baseUrl
+
+  getPokemon(): Observable<Pokemon | undefined> {
+    const headers = new HttpHeaders({
+      'x-token' : this.getToken(),
+      'Otra-Cabecera': 'Valor',
+    });
+    return this.http.get<Pokemon>(this.baseUrl,{headers}).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
+
+  private token: string | number  = '';
+
+  setToken(token: string): void {
+    this.token = token;
+  }
+
+  getToken(): string | number {
+    return this.token;
+  }
+
+  clearToken(): void {
+    this.token = '';
+  }
+
+  postPokemon(pokemon: Pokemon): Observable<Pokemon | undefined> {
+    const headers = new HttpHeaders({
+      'x-token' : this.getToken(),
+      'Otra-Cabecera': 'Valor',
+    });
+    return this.http.post<Pokemon>(this.baseUrl,pokemon,{headers}).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
+
+  putPokemon(pokemon: Pokemon): Observable<Pokemon | undefined> {
+    const headers = new HttpHeaders({
+      'x-token' : this.getToken(),
+      'Otra-Cabecera': 'Valor',
+    });
+    return this.http.put<Pokemon>(this.baseUrl,pokemon,{headers}).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
+
+  deletePokemon(pokemon: Pokemon): Observable<Pokemon | undefined> {
+    const headers = new HttpHeaders({
+      'x-token' : this.getToken(),
+      'Otra-Cabecera': 'Valor',
+    });
+    return this.http.delete<Pokemon>(this.baseUrl,{headers}).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
+
+  getPokemon = async (): Promise<Pokemon | undefined> => {
+    const headers = new HttpHeaders({
+      'x-token' : this.getToken(),
+      'Otra-Cabecera': 'Valor',
+    });
+    try {
+      const response = await this.http.get<Pokemon>(this.baseUrl,{headers}).toPromise();
+      return response;
+    } catch (error) {
+      return undefined;
+    }
+  }
+}
+```
