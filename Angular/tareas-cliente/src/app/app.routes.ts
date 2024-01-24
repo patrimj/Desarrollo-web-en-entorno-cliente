@@ -13,3 +13,5 @@ export const routes: Routes = [
     {path: 'inicio/tareas', component: TareasComponent},
     {path: 'inicio/usuarios', component: UsuariosComponent},
 ];
+
+
