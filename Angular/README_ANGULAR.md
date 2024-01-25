@@ -614,3 +614,9 @@ export class PokemonService {
   }
 }
 ```
+
+## 9. MODALES POR TYPESCRIPT
+
+** El modal es otro componente, que se abre encima del componente principal, y se utiliza para mostrar información, como por ejemplo, un mensaje de error, o un mensaje de confirmación. **
+```typescript
+const dialog  = this.dialog 
