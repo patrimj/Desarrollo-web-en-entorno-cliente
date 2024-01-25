@@ -10,10 +10,10 @@ export const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: '/login'},
     {path: 'login', component: LoginComponent},
     {path: 'tareas', component: TareasComponent}, // Tareas para mi es el [INICIO] donde se encontrarán las diferentes funciones [crear, modificar, colsultar] --> ADMIN & [inicio] --> USUARIO
-    {path: 'tareas/crear', component: CrearTareaComponent}, 
-    {path: 'tareas/modificar', component: ModificarTareaComponent}, 
-    {path: 'tareas/consultar', component: ConsultarTareaComponent}, 
-    {path: 'tareas/inicio', component: InicioProgramadorComponent}, 
+    {path: 'tareas/crear', component: CrearTareaComponent}, // ADMIN
+    {path: 'tareas/modificar', component: ModificarTareaComponent}, //ADMIN
+    {path: 'tareas/consultar', component: ConsultarTareaComponent},  //ADMIN
+    {path: 'tareas/inicio', component: InicioProgramadorComponent}, //PROGRAMADOR
 ];
 
 

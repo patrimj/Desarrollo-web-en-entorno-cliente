@@ -25,6 +25,12 @@ ng serve --open
 ```bash
 ng generate component nuevo-componente
 ```
+## POPUP TEMAS
+```bash
+ng add @angular/material
+```
+
+
 # Apuntes de Angular
 
 ## RouterLink 
