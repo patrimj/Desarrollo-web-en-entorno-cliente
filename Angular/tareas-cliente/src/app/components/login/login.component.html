@@ -1,0 +1,14 @@
+<form (submit)="onSubmit()">
+    <label id="emial" >
+       Email:
+       <input type="email" [(ngModel)]="email" name="email" required email>
+    </label>
+   
+    <label id="password" >
+       Password:
+       <input type="password" [(ngModel)]="password" name="password" required minlength="6">
+    </label>
+   
+    <button type="submit">Iniciar sesión</button>
+   </form> 
+   <p>{{ mensaje }}</p>

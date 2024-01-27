@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { TareasComponent } from './tareas/tareas.component';
-import { LoginComponent } from './login/login.component';
-import { ModificarTareaComponent } from './modificar-tarea/modificar-tarea.component';
-import { InicioProgramadorComponent } from './inicio-programador/inicio-programador.component';
-import { CrearTareaComponent } from './crear-tarea/crear-tarea.component';
-import { ConsultarTareaComponent } from './consultar-tarea/consultar-tarea.component';
+import { TareasComponent } from './components/tareas/tareas.component';
+import { LoginComponent } from './components/login/login.component';
+import { ModificarTareaComponent } from './components/modificar-tarea/modificar-tarea.component';
+import { InicioProgramadorComponent } from './components/inicio-programador/inicio-programador.component';
+import { CrearTareaComponent } from './components/crear-tarea/crear-tarea.component';
+import { ConsultarTareaComponent } from './components/consultar-tarea/consultar-tarea.component';
 
 @Component({
   selector: 'app-root',
