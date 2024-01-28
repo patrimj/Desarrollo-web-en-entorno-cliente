@@ -1,1 +1,36 @@
-<p>crear-tarea works!</p>
+<p>CREAR TAREA</p>
+<form (submit)="onSubmit()">
+    <label id="descripcion" >
+       Descripción:
+       <input type="text" [(ngModel)]="descripcion" name="descripcion" required>
+    </label>
+   
+    <label id="dificultad" >
+       Dificultad:
+       <input type="text" [(ngModel)]="dificultad" name="dificultad" required>
+    </label>
+   
+    <label id="horas_previstas" >
+       Horas previstas:
+       <input type="number" [(ngModel)]="horas_previstas" name="horas_previstas" required>
+    </label>
+   
+    <label id="horas_realizadas" >
+       Horas realizadas:
+       <input type="number" [(ngModel)]="horas_realizadas" name="horas_realizadas" required>
+    </label>
+   
+    <label id="porcentaje_realizacion" >
+       Porcentaje:
+       <input type="number" [(ngModel)]="porcentaje_realizacion" name="porcentaje_realizacion" required>
+    </label>
+   
+    <label id="completada" >
+       Completada:
+       <input type="checkbox" [(ngModel)]="completada" name="completada">
+    </label>
+   
+    <button type="submit">Crear Tarea</button>
+</form> 
+<p>{{ mensaje }}</p>
+   

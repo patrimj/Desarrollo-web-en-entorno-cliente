@@ -6,7 +6,7 @@ export class Tarea {
         public dificultad: string,
         public horas_previstas: number,
         public horas_realizadas: number,
-        public porcentaje: number,
+        public porcentaje_realizacion: number,
         public completada: boolean,
     ) {
 

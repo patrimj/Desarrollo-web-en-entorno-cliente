@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
 import { RespuestaLogin } from '../interfaces/respuesta-login';
 import { tap } from 'rxjs/operators';
 
@@ -19,8 +18,9 @@ export class AuthService {
   login(email: string, password: string): Observable<RespuestaLogin | undefined> {
     return this.http.post<RespuestaLogin>(`${this.baseUrl}/login`, { email, password }).pipe(
       tap(response => {
-        if (response && response.token) {
+        if (response && response.token && response.usu) {
           localStorage.setItem('token', response.token);
+          localStorage.setItem('usuario', response.usu.nombre);
           console.log('Usuario correcto:', response)
           console.log('Usuario con token:', response.token)
         } else {

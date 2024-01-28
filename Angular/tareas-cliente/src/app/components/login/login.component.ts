@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
 import { FormsModule } from '@angular/forms';
 import { validar } from './validaciones';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent {
   password: string = '';
   mensaje: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   onSubmit(): void {
 
@@ -33,6 +34,9 @@ export class LoginComponent {
       data => {
         if (data && data.token) {
           this.mensaje = 'Usuario logueado';
+          //redirigir a la pagina de inicio
+          this.router.navigate(['tareas']);
+
         }
       },
       error => {

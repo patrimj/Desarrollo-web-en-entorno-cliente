@@ -1,7 +1,7 @@
 export function validar(email: string, password: string): string {
 
     if (!email || !password) {
-        return 'Por favor, complete todos los campos';
+        return 'complete todos los campos';
     }
     if (password.length < 4) {
         return 'La contraseña debe tener al menos 4 caracteres';

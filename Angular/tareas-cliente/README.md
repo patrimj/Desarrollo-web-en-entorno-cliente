@@ -63,7 +63,7 @@ ng add @angular/material
 
 ##### SERVICIOS
 - ``tarea.service``: Servicio que contiene los métodos para la gestión de las tareas.
-- ``usuario.service``: Servicio que contiene los métodos para la gestión de los usuarios.
+- ``auth.service``: Servicio que contiene los métodos para la gestión de la autenticación.
   
 
 ## 3. PASOS SEGUIDOS
