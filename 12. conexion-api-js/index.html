@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Probando API Requests</title>
+</head>
+<body>
+    <h1>Probando API Requests</h1>
+    <h3>Datos Personas</h3>
+    <div id="datosUsuario">
+        
+    </div>
+    <h3>Datos Coches</h3>
+    <div id="datosCoches"></div>
+    <h3>Datos Propiedad</h3>
+    <div id="datosPropiedad"></div>
+    <h3>Actualizar Persona</h3>
+    <div id="actualizarPersona">
+        <form>
+            <label for="dni">DNI</label>
+            <input type="text" id="dni" name="dni" > </br></br>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" > </br></br>
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" > </br></br>
+            <label for="edad">Edad</label>
+            <input type="text" id="edad" name="edad" > </br></br>
+            <label for="telefono">Telefono</label>
+            <input type="text" id="telefono" name="telefono" > </br></br>
+            <button type="button" onclick="modificarUsuario()">Actualizar</button>
+        </form>
+    </div>
+    <script type="module" src="Llamada.js"></script>
+</body>
+</html>

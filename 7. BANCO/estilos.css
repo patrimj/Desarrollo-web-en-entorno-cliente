@@ -1,0 +1,33 @@
+body {
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: left;
+
+}
+#menu li {
+    display:inline;
+    padding-left:3px;
+    padding-right:3px;
+}
+#menu {
+    font-family:Arial;
+    font-weight:bold;
+    font-size:13px;
+}
+#datos {
+    grid-column-start: 1;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-items: center;
+}
+#datos label {
+    grid-column-start: 1;
+}
+#datos input  {
+    grid-column-start: 2;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+#mod-datos {
+    grid-column-start: 1;
+}

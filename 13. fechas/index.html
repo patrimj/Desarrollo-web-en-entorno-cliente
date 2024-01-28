@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fechas</title>
+</head>
+
+<body>
+    <form>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required> 
+            </br></br>
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" required> 
+            </br></br>
+        <label for="fechaAlta">Fecha Alta:</label>
+        <input type="date" id="fechaAlta" name="fechaAlta" required> 
+            </br></br>
+
+    <div id="ocultar" hidden>     
+        <label for="fechaBaja">Fecha Baja:</label>
+        <input type="date" id="fechaBaja" name="fechaBaja" disabled required> 
+            </br></br>
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" name="estado" disabled required readonly value="No activo"> 
+            </br></br>
+
+        <button type="button" id="modificar" disabled>Modificar datos</button>
+    </div> 
+        <button type="button" id="alta">Alta Usuario</button>
+        
+      
+    </form>
+
+    <script src="app1.js"></script>
+</body>
+</html>

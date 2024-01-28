@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscador de posts</title>
+</head>
+<body>
+    <form id="buscador">
+        <label for="id"></label>
+        <input type="text" id="id" placeholder="ID">
+        <button type="button" id="buscarBtn">Buscar</button>
+    </form>
+
+    <textarea id="post-info" rows="10" cols="40"></textarea>
+    <textarea id="post-comentarios" rows="10" cols="40" ></textarea>
+
+    <form id="modificador">
+        <label for="userId"></label>
+        <input type="text" id="userid" placeholder="userId ">
+        <label for="id"></label>
+        <input type="text" id="id" placeholder="Id ">
+        <label for="titulo"></label>
+        <input type="text" id="titulo" placeholder="title">
+        <label for="cuerpo"></label>
+        <input type="text" id="cuerpo" placeholder="body">
+        <button type="button" id="modificar" >Modificar Post</button>
+    </form>
+
+    <textarea id="post-modificado" rows="10" cols="40" ></textarea>
+
+    <p id="msg"></p>
+    <script src="/dist/app.main.js"></script>
+</body>
+</html>
