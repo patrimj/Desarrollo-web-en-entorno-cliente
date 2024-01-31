@@ -1,1 +1,68 @@
-<p>modificar-tarea works!</p>
+<div>
+   <h1>Tareas</h1>
+   @if (hayRegistros()) {
+   <table>
+      <thead>
+         <tr>
+            <th>ID</th>
+            <th>Descripcion</th>
+            <th>Dificultad</th>
+            <th>Horas previstas</th>
+            <th>Horas realizadas</th>
+            <th>Porcentaje realizacion</th>
+            <th>Completada</th>
+         </tr>
+      </thead>
+      <tbody>
+         @for(tarea of tareas; track tarea.id) {
+         <tr>
+            <td>{{tarea.id}}</td>
+            <td>{{tarea.descripcion}}</td>
+            <td>{{tarea.dificultad}}</td>
+            <td>{{tarea.horas_previstas}}</td>
+            <td>{{tarea.horas_realizadas}}</td>
+            <td>{{tarea.porcentaje_realizacion}}</td>
+            <td>{{tarea.completada}}</td>
+
+            <td><button (click)="borrar(tarea.id)">Borrar?</button></td>
+            <td><button (click)="seleccionar(tarea)">Seleccionar</button></td>
+         </tr>
+         }
+      </tbody>
+   </table>
+   } @else {
+   <p>No hay tareas.</p>
+   }
+
+
+   <div>
+      <h1>Modifcar Tareas</h1>
+      <p>
+         id:<input type="number" [(ngModel)]="tarea.id" />
+      </p>
+      <p>
+         Descripcion:<input type="text" [(ngModel)]="tarea.descripcion" />
+      </p>
+      <p>
+         Dificultad:<input type="text" [(ngModel)]="tarea.dificultad" />
+      </p>
+      <p>
+         Horas previstas:<input type="number" [(ngModel)]="tarea.horas_previstas" />
+
+      </p>
+      <p>
+         Horas realizadas:<input type="number" [(ngModel)]="tarea.horas_realizadas" />
+      </p>
+      <p>
+         Porcentaje realizacion:<input type="number" [(ngModel)]="tarea.porcentaje_realizacion" />
+      </p>
+      <p>
+         Completada:<input type="checkbox" [(ngModel)]="tarea.completada" />
+      </p>
+      <p>
+         <button (click)="agregar()">Agregar</button>
+         <button (click)="modificar()">Modificar</button>
+      </p>
+   </div>
+</div>
+

@@ -37,7 +37,10 @@ export class TareaService {
   }
 
   modificarTarea(id: number, descripcion: string, dificultad:string, horas_previstas: number, horas_realizadas: number, porcentaje_realizacion: number, completada: boolean): Observable<Tarea | undefined> {
-    return this.http.put<Tarea>(`${this.baseUrl}/tarea/modificar/${id}`, { descripcion, dificultad, horas_previstas, horas_realizadas, porcentaje_realizacion, completada }).pipe(
+    const headers = new HttpHeaders({
+      'x-token' : this.authService.getToken(),
+    });
+    return this.http.put<Tarea>(`${this.baseUrl}/tarea/modificar/${id}`, { descripcion, dificultad, horas_previstas, horas_realizadas, porcentaje_realizacion, completada }, { headers }).pipe(
        tap(response => {
          if (response && response.descripcion && response.dificultad && response.horas_previstas && response.horas_realizadas && response.porcentaje_realizacion && response.completada) {
            console.log('Tarea modificada:', response)
@@ -53,7 +56,10 @@ export class TareaService {
    }
 
    getTareas(): Observable<Tarea[]> {
-    return this.http.get<Tarea[]>(`${this.baseUrl}/tareas`).pipe(
+    const headers = new HttpHeaders({
+      'x-token' : this.authService.getToken(),
+    });
+    return this.http.get<Tarea[]>(`${this.baseUrl}/tareas`,{ headers }).pipe(
       tap(response => {
         if (response) {
           console.log('Tareas:', response)
@@ -67,6 +73,7 @@ export class TareaService {
       })
     );
    }
+   
 
    //desplegable con las siguientes consultas
 
