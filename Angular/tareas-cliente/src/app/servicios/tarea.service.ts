@@ -55,6 +55,26 @@ export class TareaService {
     );
    }
 
+   eliminarTarea(id: number): Observable<Tarea | undefined> {
+
+    const headers = new HttpHeaders({
+      'x-token' : this.authService.getToken(),
+    });
+    return this.http.delete<Tarea>(`${this.baseUrl}/tarea/eliminar/${id}`, { headers }).pipe(
+      tap(response => {
+        if (response) {
+          console.log('Tarea eliminada:', response)
+        } else {
+          throw new Error('Error, datos incorrectos');
+        }
+      }),
+      catchError((error) => {
+        console.error(error);
+        throw error; 
+      })
+    );
+   }
+
    getTareas(): Observable<Tarea[]> {
     const headers = new HttpHeaders({
       'x-token' : this.authService.getToken(),

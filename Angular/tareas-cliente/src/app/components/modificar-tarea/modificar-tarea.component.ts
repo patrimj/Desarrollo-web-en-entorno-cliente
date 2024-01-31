@@ -32,18 +32,19 @@ export class ModificarTareaComponent implements OnInit {
     for (let x = 0; x < this.tareas.length; x++)
       if (this.tareas[x].id == id) {
         this.tareas.splice(x, 1);
+        this.tareaService.eliminarTarea(id).subscribe();
         return;
       }
   }
 
   agregar() {
     if (this.tarea.id == 0) {
-      alert('Debe ingresar un código de articulo distinto a cero');
+      alert('Debe ingresar un id de tarea dif a cero');
       return;
     }
     for (let x = 0; x < this.tareas.length; x++)
       if (this.tareas[x].id == this.tarea.id) {
-        alert('ya existe un articulo con dicho codigo');
+        alert('No puedes agregar una tarea ya existente');
         return;
       }
     this.tareas.push({
@@ -56,6 +57,10 @@ export class ModificarTareaComponent implements OnInit {
       completada: this.tarea.completada
 
     });
+
+    this.tareaService.crearTarea(this.tarea.descripcion, this.tarea.dificultad, this.tarea.horas_previstas, this.tarea.horas_realizadas, this.tarea.porcentaje_realizacion, this.tarea.completada).subscribe();
+
+    
     this.tarea.id = 0;
     this.tarea.descripcion = '';
     this.tarea.dificultad = '';
@@ -63,6 +68,8 @@ export class ModificarTareaComponent implements OnInit {
     this.tarea.horas_realizadas = 0;
     this.tarea.porcentaje_realizacion = 0;
     this.tarea.completada = false;
+
+
   }
 
   seleccionar(tarea: { id: number; descripcion: string; dificultad: string; horas_previstas: number; horas_realizadas: number; porcentaje_realizacion: number; completada: boolean; }) {
