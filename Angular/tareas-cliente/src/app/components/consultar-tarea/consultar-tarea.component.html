@@ -1,0 +1,101 @@
+<div>
+    <h1>Consultar Tareas</h1>
+
+    <select name="tipoConsulta" id="tipoConsulta" [(ngModel)]="tipoConsulta" (change)="cargarTareas()">
+        <option value="ranking">Ranking de Programadores</option>
+        <option value="realizadas">Tareas Realizadas</option>
+        <option value="pendientes">Tareas Pendientes</option>
+        <option value="programador">Tareas de un Programador</option>
+    </select>
+
+    <input type="text" placeholder="Buscar por programador" />
+
+    <div>
+        @if (tipoConsulta === 'ranking') {
+        <h1>Ranking de Programadores</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ID USUARIO</th>
+                    <th>TAREAS REALIZADAS</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(tareaAsig of tareasAsig; track tareaAsig.id) {
+                <tr>
+                    <td>{{tareaAsig.id}}</td>
+                    <td>{{tareaAsig.id_usuario}}</td>
+                    <td>{{tareaAsig.tareas_realizadas}}</td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+    </div>
+
+    <div>
+        @if (tipoConsulta === 'realizadas') {
+        <h1>Tareas Realizadas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descripcion</th>
+                    <th>Dificultad</th>
+                    <th>Horas previstas</th>
+                    <th>Horas realizadas</th>
+                    <th>Porcentaje realizacion</th>
+                    <th>Completada</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(tarea of tareas; track tarea.id) {
+                <tr>
+                    <td>{{tarea.id}}</td>
+                    <td>{{tarea.descripcion}}</td>
+                    <td>{{tarea.dificultad}}</td>
+                    <td>{{tarea.horas_previstas}}</td>
+                    <td>{{tarea.horas_realizadas}}</td>
+                    <td>{{tarea.porcentaje_realizacion}}</td>
+                    <td>{{tarea.completada}}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+    </div>
+
+    <div>
+        @if (tipoConsulta === 'pendientes') {
+        <h1>Tareas Pendientes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descripcion</th>
+                    <th>Dificultad</th>
+                    <th>Horas previstas</th>
+                    <th>Horas realizadas</th>
+                    <th>Porcentaje realizacion</th>
+                    <th>Completada</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(tarea of tareas; track tarea.id) {
+                <tr>
+                    <td>{{tarea.id}}</td>
+                    <td>{{tarea.descripcion}}</td>
+                    <td>{{tarea.dificultad}}</td>
+                    <td>{{tarea.horas_previstas}}</td>
+                    <td>{{tarea.horas_realizadas}}</td>
+                    <td>{{tarea.porcentaje_realizacion}}</td>
+                    <td>{{tarea.completada}}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+
+    </div>

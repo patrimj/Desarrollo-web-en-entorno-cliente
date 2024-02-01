@@ -6,6 +6,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Tarea } from '../clases/tarea';
 import { AuthService } from '../servicios/auth.service';
+import { TareaAsignada } from '../clases/tarea-asignada';
 
 @Injectable({
   providedIn: 'root'
@@ -97,8 +98,11 @@ export class TareaService {
 
    //desplegable con las siguientes consultas
 
-   ranking (): Observable<Tarea[]> {
-    return this.http.get<Tarea[]>(`${this.baseUrl}/ranking`).pipe(
+   ranking (): Observable<TareaAsignada[]> {
+    const headers = new HttpHeaders({
+      'x-token' : this.authService.getToken(),
+    });
+    return this.http.get<TareaAsignada[]>(`${this.baseUrl}/ranking`,{ headers }).pipe(
       tap(response => {
         if (response) {
           console.log('Ranking:', response)
@@ -114,7 +118,10 @@ export class TareaService {
    }
 
    tareasRealizadas (): Observable<Tarea[]> {
-    return this.http.get<Tarea[]>(`${this.baseUrl}/tareas/realizadas`).pipe(
+    const headers = new HttpHeaders({
+      'x-token' : this.authService.getToken(),
+    });
+    return this.http.get<Tarea[]>(`${this.baseUrl}/tareas/realizadas`,{ headers }).pipe(
       tap(response => {
         if (response) {
           console.log('Tareas realizadas:', response)
@@ -130,7 +137,10 @@ export class TareaService {
    }
 
    tareasPendientes (): Observable<Tarea[]> {
-    return this.http.get<Tarea[]>(`${this.baseUrl}/tareas/pendientes`).pipe(
+    const headers = new HttpHeaders({
+      'x-token' : this.authService.getToken(),
+    });
+    return this.http.get<Tarea[]>(`${this.baseUrl}/tareas/pendientes`,{ headers }).pipe(
       tap(response => {
         if (response) {
           console.log('Tareas pendientes:', response)
@@ -146,6 +156,7 @@ export class TareaService {
    }
 
    tareasProgramadorID (id: number): Observable<Tarea[]> {
+
     return this.http.get<Tarea[]>(`${this.baseUrl}/tareas/programador/${id}`).pipe(
       tap(response => {
         if (response) {

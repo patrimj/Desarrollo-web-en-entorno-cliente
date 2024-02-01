@@ -1,9 +1,25 @@
 <header>
     <h1>Hola, {{ nombre }}</h1>
 </header>
-   
-   <nav>
+
+@if (esAmbos()) {
+        <button (click)="crearTarea()">Crear tarea</button>
+        <button (click)="modificarTarea()">Modificar tarea</button>
+        <button (click)="consultarTarea()">Consultar tarea</button>
+        <button (click)="listarAsignadas()">Listar tareas</button>
+
+}@else if (esAdmin()) {
     <button (click)="crearTarea()">Crear tarea</button>
     <button (click)="modificarTarea()">Modificar tarea</button>
     <button (click)="consultarTarea()">Consultar tarea</button>
-   </nav>
+
+}@else {
+    <nav>
+        <button (click)="listarAsignadas()">Listar tareas</button>
+    </nav>
+}
+
+
+
+
+

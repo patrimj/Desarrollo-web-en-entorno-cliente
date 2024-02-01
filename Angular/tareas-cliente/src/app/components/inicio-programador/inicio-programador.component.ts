@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-inicio-programador',
   standalone: true,
-  imports: [],
+  imports: [ ],
   templateUrl: './inicio-programador.component.html',
   styleUrl: './inicio-programador.component.css'
 })

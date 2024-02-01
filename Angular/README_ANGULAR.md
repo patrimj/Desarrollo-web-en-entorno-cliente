@@ -626,3 +626,15 @@ export class PokemonService {
 ** El modal es otro componente, que se abre encima del componente principal, y se utiliza para mostrar información, como por ejemplo, un mensaje de error, o un mensaje de confirmación. **
 ```typescript
 const dialog  = this.dialog 
+```
+
+## 10. PIPE
+
+```bash
+
+ng generate pipe pipes/nombre-del-pipe
+```
+```bash
+ng generate interceptor interceptors/nombre-del-interceptor
+
+```

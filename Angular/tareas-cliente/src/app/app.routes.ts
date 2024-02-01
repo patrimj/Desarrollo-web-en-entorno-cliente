@@ -16,3 +16,4 @@ export const routes: Routes = [
     {path: 'tareas/inicio', component: InicioProgramadorComponent}, //PROGRAMADOR
 ];
 
+    

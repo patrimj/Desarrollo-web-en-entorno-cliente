@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 import { catchError } from 'rxjs/operators';
 import { RespuestaLogin } from '../interfaces/respuesta-login';
 import { tap } from 'rxjs/operators';
+import { Rol } from '../clases/rol';
 
 
 @Injectable({
@@ -21,6 +22,7 @@ export class AuthService {
         if (response && response.token && response.usu) {
           localStorage.setItem('token', response.token);
           localStorage.setItem('usuario', response.usu.nombre);
+          localStorage.setItem('id', response.usu.id.toString());
           console.log('Usuario correcto:', response)
           console.log('Usuario con token:', response.token)
         } else {
@@ -33,6 +35,23 @@ export class AuthService {
       })
     );
   }
+
+  esAdmin(id_usuario: number): Observable<Rol[]> {
+
+    return this.http.get<Rol[]>(`${this.baseUrl}/rol/${id_usuario}`).pipe(
+      tap(response => {
+        if (response) {
+          console.log('Id:', response)
+        } else {
+          throw new Error('Error, datos incorrectos');
+        }
+      }),
+      catchError((error) => {
+        console.error(error);
+        throw error; 
+      })
+    );
+   }
 
 
   private token: string | number = '';
