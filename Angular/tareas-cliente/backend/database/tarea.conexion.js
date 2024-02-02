@@ -23,8 +23,12 @@ class TareaConexion {
     listarTareasLibres = async () => {
         let resultado = [];
         this.conectar();
-        resultado = await models.Tarea.findAll({
-            attributes: ['id', 'descripcion', 'dificultad', 'horas_previstas', 'horas_realizadas', 'porcentaje_realizacion', 'completada'],
+        resultado = await models.Tarea_Asignada.findAll({
+            where: { id_usuario: null },
+            include: [{
+                model: models.Tarea,
+                as: 'tarea'
+            }]
         });
         this.desconectar();
         return resultado;
