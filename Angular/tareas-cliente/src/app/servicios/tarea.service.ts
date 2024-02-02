@@ -7,6 +7,7 @@ import { tap } from 'rxjs/operators';
 import { Tarea } from '../clases/tarea';
 import { AuthService } from '../servicios/auth.service';
 import { TareaAsignada } from '../clases/tarea-asignada';
+import { TareaAsignadaPro } from '../interfaces/tarea-asignada';
 
 @Injectable({
   providedIn: 'root'
@@ -95,7 +96,6 @@ export class TareaService {
     );
    }
    
-
    //desplegable con las siguientes consultas
 
    ranking (): Observable<TareaAsignada[]> {
@@ -155,9 +155,12 @@ export class TareaService {
     );
    }
 
-   tareasProgramadorID (id: number): Observable<Tarea[]> {
-
-    return this.http.get<Tarea[]>(`${this.baseUrl}/tareas/programador/${id}`).pipe(
+   tareasProgramadorID (id: number): Observable<TareaAsignadaPro[]> {
+    const headers = new HttpHeaders({
+      'x-token' : this.authService.getToken(),
+    });
+    console.log('id:', id);
+    return this.http.get<TareaAsignadaPro[]>(`${this.baseUrl}/tareas/programador/${id}`,{headers}).pipe(
       tap(response => {
         if (response) {
           console.log('Tareas de programador:', response)
@@ -171,4 +174,44 @@ export class TareaService {
       })
     );
    }
+
+   listarTareasAsignadas(): Observable<TareaAsignadaPro[]> {
+    const headers = new HttpHeaders({
+      'x-token' : this.authService.getToken(),
+    });
+    return this.http.get<TareaAsignadaPro[]>(`${this.baseUrl}/tareas/asignadas`,{ headers }).pipe(
+      tap(response => {
+        if (response) {
+          console.log('Tareas asignadas:', response)
+        } else {
+          throw new Error('Error, datos incorrectos');
+        }
+      }),
+      catchError((error) => {
+        console.error(error);
+        throw error; 
+      })
+    );
+   }
+
+
+   modificarTareaPro(tareaAsignada: TareaAsignadaPro): Observable<TareaAsignadaPro | undefined> {
+    const headers = new HttpHeaders({
+       'x-token': this.authService.getToken(),
+    });
+    return this.http.put<TareaAsignadaPro>(`${this.baseUrl}/tareaPro/modificar/${tareaAsignada.tarea.id}`, tareaAsignada, { headers }).pipe(
+       tap(response => {
+         if (response && response.tarea && response.tarea.descripcion && response.tarea.dificultad && response.tarea.horas_previstas && response.tarea.horas_realizadas && response.tarea.porcentaje_realizacion && response.tarea.completada) {
+           console.log('Tarea asignada modificada:', response);
+         } else {
+           throw new Error('Error, datos incorrectos');
+         }
+       }),
+       catchError((error) => {
+         console.error(error);
+         throw error;
+       })
+    );
+   }
+
 }
