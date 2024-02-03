@@ -19,8 +19,9 @@
 
 ## 0. PASOS PARA COMPROBAR EL FUNCIONAMIENTO DE LA APLICACIÓN
 
-### 1. Añadir .env en la carpeta ``backend`` e importar la BBDD ``tareaMigSeedNode_dev.sql`` en MySQL (crearla con el mismo nombre)
+### 1. Añadir ``.env`` en la carpeta ``backend`` e importar la BBDD ``tareaMigSeedNode_dev.sql`` en MySQL (crearla con el mismo nombre)
 
+- ``.env`` 
 ```bash
 PORT=9090
 
@@ -39,9 +40,8 @@ DB_MAXCONNECTIONS=5
 
 SECRETORPRIVATEKEY=eST0EsmiPiblic@key
 ```
-*** Si se quiere comprobar el funcionamiento de las rutas con Thunder Client, importar  la colección con el archivo ``thunder-collection_Node_tareas.json`` ***
-
-*** Cualquier duda con backend (rutas o bbdd) --> README_NODE.MD ***
+-  Si se quiere comprobar el funcionamiento de las rutas con Thunder Client, importar  la colección con el archivo ``thunder-collection_Node_tareas.json`` 
+-   Cualquier duda con backend (rutas o bbdd) --> README_NODE.MD 
 
 
 ### 2. Iniciar la aplicación (necesitaremos 2 terminales)
@@ -60,7 +60,7 @@ cd backend
 npm install 
 nodemon
 ```
-*** Si está funcionando correctamente, en la terminal deberá aparecer el mensaje ``Servidor escuchando en: 9090`` ***
+-  Si está funcionando correctamente, en la terminal deberá aparecer el mensaje ``Servidor escuchando en: 9090``
 
 ---
 
@@ -87,6 +87,10 @@ nodemon
 - Horas realizadas: ``0``
 - Porcentaje: ``0``
 - Completada: ``false``
+
+### 1.2. ID DE PROGRMADORES 
+- 6
+- 4
 
 ## 2. COMANDOS UTILIZADOS
 
@@ -125,11 +129,11 @@ ng generate class clases/usuario
 ng add @angular/material
 ```
 
-## 2. ESTRUCTURACIÓN DEL PROYECTO
+## 3. ESTRUCTURACIÓN DEL PROYECTO
 
 ### APP 
 
-##### COMPONENTES 
+##### [COMPONENTES](#COMPONENTES) 
 
 Los componentes son los que controlan las vistas de la aplicación. Dividir componentes en pantallas o partes de la aplicación.
 
@@ -143,31 +147,32 @@ Los componentes son los que controlan las vistas de la aplicación. Dividir comp
 - ``app.routes``: Archivo de rutas de la aplicación.
 - ``app.config``: Archivo de configuración de la aplicación. Importaremos el módulo HttpClient para poder hacer peticiones HTTP.
 
-##### CLASES
+##### [CLASES](#CLASES) 
+
 - ``tarea``: Clase que contiene los atributos de una tarea.
 - ``usuario``: Clase que contiene los atributos de un usuario.
 - ``rol``: Clase que contiene los atributos de los roles.
 - ``tarea-asignada``: Clase que contiene los atributos de una tarea asignada (ranking).
 
-##### INTERFACES
+##### [INTERFACES](#INTERFACES) 
 - ``tarea``: Interfaz que contiene los atributos de una tarea.
 - ``usuario``: Interfaz que contiene los atributos de un usuario.
 - ``respuesta-login``: Interfaz que contiene los atributos de la respuesta del login. (el usuario y su token)
 - ``tarea-asignada``: Interfaz que contiene los atributos de una tarea asignada (tabla tarea asignada y tarea con sus detalles).
 
-##### ENVIROMENTS
+##### [ENVIROMENTS](#ENVIROMENTS) 
 - ``environment``: Archivo de configuración de la aplicación, con la url del servidor.
 
 ```bash
     baseUrl:'http://localhost:9090/api'
 ```
 
-##### SERVICIOS
+##### [SERVICIOS](#SERVICIOS) 
 - ``tarea.service``: Servicio que contiene los métodos para la gestión de las tareas.
 - ``auth.service``: Servicio que contiene los métodos para la gestión de la autenticación.
   
 
-## 3. PASOS SEGUIDOS
+## 4. PASOS SEGUIDOS
 
 ### IMPORTAMOS ``HTTPCLIENT`` EN ``app.config.ts``
 
@@ -207,7 +212,7 @@ export const routes: Routes = [
 ];
 ```
 
-## 4. RUTAS
+## 5. RUTAS
 
 ```bash
 http://localhost:9090/api/registrarse                       // POST
