@@ -96,8 +96,6 @@ export class TareaService {
     );
    }
    
-   //desplegable con las siguientes consultas
-
    ranking (): Observable<TareaAsignada[]> {
     const headers = new HttpHeaders({
       'x-token' : this.authService.getToken(),

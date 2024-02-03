@@ -1,8 +1,8 @@
-<div>
-   <h1>Tareas</h1>
+<div class="container">
+   <h1 class="text-center">Tareas</h1>
    @if (hayRegistros()) {
-   <table>
-      <thead>
+   <table class="table">
+      <thead class="thead-dark">
          <tr>
             <th>ID</th>
             <th>Descripcion</th>
@@ -24,45 +24,49 @@
             <td>{{tarea.porcentaje_realizacion}}</td>
             <td>{{tarea.completada}}</td>
 
-            <td><button (click)="borrar(tarea.id)">Borrar?</button></td>
-            <td><button (click)="seleccionar(tarea)">Seleccionar</button></td>
+            <td><button class="btn btn-danger" (click)="borrar(tarea.id)">Borrar</button></td>
+            <td><button class="btn btn-primary" (click)="seleccionar(tarea)">Seleccionar</button></td>
          </tr>
          }
       </tbody>
    </table>
    } @else {
-   <p>No hay tareas.</p>
+   <p class="alert alert-warning">No hay tareas.</p>
    }
 
 
-   <div>
-      <h1>Modifcar Tareas</h1>
-      <p>
-         id:<input type="number" [(ngModel)]="tarea.id" />
-      </p>
-      <p>
-         Descripcion:<input type="text" [(ngModel)]="tarea.descripcion" />
-      </p>
-      <p>
-         Dificultad:<input type="text" [(ngModel)]="tarea.dificultad" />
-      </p>
-      <p>
-         Horas previstas:<input type="number" [(ngModel)]="tarea.horas_previstas" />
+   <div class="container mb-3">
+      <div>
+         <h1 class="text-center">Modificar Tareas</h1>
+         <p>
+            id:<input type="number" [(ngModel)]="tarea.id" class="form-control" />
+         </p>
+         <p>
+            Descripcion:<input type="text" [(ngModel)]="tarea.descripcion" class="form-control" />
+         </p>
+         <p>
+            Dificultad:<input type="text" [(ngModel)]="tarea.dificultad" class="form-control" />
+         </p>
+         <p>
+            Horas previstas:<input type="number" [(ngModel)]="tarea.horas_previstas" class="form-control" />
 
-      </p>
-      <p>
-         Horas realizadas:<input type="number" [(ngModel)]="tarea.horas_realizadas" />
-      </p>
-      <p>
-         Porcentaje realizacion:<input type="number" [(ngModel)]="tarea.porcentaje_realizacion" />
-      </p>
-      <p>
-         Completada:<input type="checkbox" [(ngModel)]="tarea.completada" />
-      </p>
-      <p>
-         <button (click)="agregar()">Agregar</button>
-         <button (click)="modificar()">Modificar</button>
-      </p>
+         </p>
+         <p>
+            Horas realizadas:<input type="number" [(ngModel)]="tarea.horas_realizadas" class="form-control" />
+         </p>
+         <p>
+            Porcentaje realizacion:<input type="number" [(ngModel)]="tarea.porcentaje_realizacion"
+               class="form-control" />
+         </p>
+         <p>
+            Completada:<input type="checkbox" [(ngModel)]="tarea.completada" class="form-check-input" />
+         </p>
+         <p>
+            <button class="btn btn-success" (click)="agregar()">Agregar</button>
+            <button class="btn btn-warning" (click)="modificar()">Modificar</button>
+         </p>
+      </div>
+      <button (click)="inicio()" type="button" class="btn btn-secondary mt-3">Volver al inicio</button>
    </div>
+   <p class="text-center">{{ mensaje }}</p>
 </div>
-

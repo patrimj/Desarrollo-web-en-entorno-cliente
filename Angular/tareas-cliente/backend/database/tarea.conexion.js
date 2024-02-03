@@ -17,7 +17,7 @@ class TareaConexion {
         this.conexion.desconectar();
     }
 
-    // RUTAS PROGRAMADOR
+    // ------------------------------ RUTAS PROGRAMADOR ------------------------------
 
     //LISTAR TAREAS LIBRES
     listarTareasLibres = async () => {
@@ -127,46 +127,42 @@ class TareaConexion {
     }
 
     //MODIFICAR TAREA 
-//MODIFICAR TAREA 
-modificarTareaPro = async (id, body) => {
-    this.conectar();
-    let resultado = await models.Tarea_Asignada.findByPk(id);
-    if (!resultado) {
-        this.desconectar();
-        throw new Error('Tarea asignada no encontrada');
-    }
-    try {
-        // Actualiza los campos de Tarea_Asignada
-        await resultado.update({
-            id_tarea: body.id_tarea,
-            id_usuario: body.id_usuario,
-            // Agrega aquí otros campos de Tarea_Asignada si es necesario
-        });
-
-        // Actualiza los campos de Tarea
-        const tarea = await models.Tarea.findByPk(body.tarea.id);
-        if (!tarea) {
-            throw new Error('Tarea no encontrada');
+    modificarTareaPro = async (id, body) => {
+        this.conectar();
+        let resultado = await models.Tarea_Asignada.findByPk(id);
+        if (!resultado) {
+            this.desconectar();
+            throw new Error('Tarea asignada no encontrada');
         }
-        await tarea.update({
-            descripcion: body.tarea.descripcion,
-            dificultad: body.tarea.dificultad,
-            horas_previstas: body.tarea.horas_previstas,
-            horas_realizadas: body.tarea.horas_realizadas,
-            porcentaje_realizacion: body.tarea.porcentaje_realizacion,
-            completada: body.tarea.completada
-        });
+        try {
+            await resultado.update({
+                id_tarea: body.id_tarea,
+                id_usuario: body.id_usuario,
+            });
 
-        this.desconectar();
-        return resultado;
-    } catch (error) {
-        this.desconectar();
-        console.error('Error al actualizar la tarea asignada:', error);
-        throw error;
+            const tarea = await models.Tarea.findByPk(body.tarea.id);
+            if (!tarea) {
+                throw new Error('Tarea no encontrada');
+            }
+            await tarea.update({
+                descripcion: body.tarea.descripcion,
+                dificultad: body.tarea.dificultad,
+                horas_previstas: body.tarea.horas_previstas,
+                horas_realizadas: body.tarea.horas_realizadas,
+                porcentaje_realizacion: body.tarea.porcentaje_realizacion,
+                completada: body.tarea.completada
+            });
+
+            this.desconectar();
+            return resultado;
+        } catch (error) {
+            this.desconectar();
+            console.error('Error al actualizar la tarea asignada:', error);
+            throw error;
+        }
     }
-}
 
-    // RUTAS ADMIN
+    // ------------------------------ RUTAS ADMIN ------------------------------
 
     ///CREAR TAREA
     crearTarea = async (body) => {

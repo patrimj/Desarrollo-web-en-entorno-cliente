@@ -1,7 +1,7 @@
 const { response, request } = require('express');
 const ConexionTarea = require('../database/tarea.conexion');
 
-// RUTAS PROGRAMADOR
+//------------------------------ RUTAS PROGRAMADOR ------------------------------
 
 //LISTAR TAREAS LIBRES
 const listarTareasLibres = (req = request, res = response) => {
@@ -68,6 +68,7 @@ const listarTareasAsignadas = (req = request, res = response) => {
             console.log(id_usuario);
         });
 }
+
 // CONSULTAR TAREA ASIGNADA
 const consultarTareaAsignada = (req = request, res = response) => {
     const conx = new ConexionTarea();
@@ -116,7 +117,7 @@ const modificarTareaPro = (req = request, res = response) => {
         });
 }
 
-// RUTAS ADMIN
+// ------------------------------ RUTAS ADMIN ------------------------------
 
 ///CREAR TAREA
 const crearTarea = (req = request, res = response) => {
@@ -197,8 +198,6 @@ const verTareasProgramador = (req = request, res = response) => {
         });
 }
 
-
-
 // VER TODAS LAS TAREAS REALIZADAS 
 const verTareasRealizadas = (req = request, res = response) => {
     const conx = new ConexionTarea();
@@ -243,6 +242,8 @@ const ranking = (req = request, res = response) => {
             res.status(200).json({ 'msg': 'No se han encontrado registros' });
         });
 }
+
+// -------------------------------- EXPORTACIONES -------------------------------- 
 
 module.exports = {
     listarTareasLibres,

@@ -1,6 +1,94 @@
 # EJERCICIO TAREAS CLIENTES EN ANGULAR
+
 ---
-## 1. COMANDOS UTILIZADOS
+
+## ÍNDICE
+
+[0. PASOS PARA COMPROBAR EL FUNCIONAMIENTO DE LA APLICACIÓN](#0-pasos-para-comprobar-el-funcionamiento-de-la-aplicación)
+
+[1. DATOS QUE NECESITAS](#1-datos-que-necesitas)
+
+[2. COMANDOS UTILIZADOS](#2-comandos-utilizados)
+
+[3. ESTRUCTURACIÓN DEL PROYECTO](#3-estructuración-del-proyecto)
+
+[4. PASOS SEGUIDOS](#4-pasos-seguidos)
+
+[5. RUTAS](#5-rutas)
+
+
+## 0. PASOS PARA COMPROBAR EL FUNCIONAMIENTO DE LA APLICACIÓN
+
+### 1. Añadir .env en la carpeta ``backend`` e importar la BBDD ``tareaMigSeedNode_dev.sql`` en MySQL (crearla con el mismo nombre)
+
+```bash
+PORT=9090
+
+DB_HOST="localhost"
+DB_USER="root"
+DB_PASSWORD=""
+
+DB_DEV="tareaMigSeedNode_dev"
+DB_PROD="tareaMigSeedNode_prod"
+DB_TEST="tareaMigSeedNode_test"
+
+DB_DIALECT="mysql"
+DB_HOST="localhost"
+DB_PORT=3306
+DB_MAXCONNECTIONS=5
+
+SECRETORPRIVATEKEY=eST0EsmiPiblic@key
+```
+*** Si se quiere comprobar el funcionamiento de las rutas con Thunder Client, importar  la colección con el archivo ``thunder-collection_Node_tareas.json`` ***
+
+*** Cualquier duda con backend (rutas o bbdd) --> README_NODE.MD ***
+
+
+### 2. Iniciar la aplicación (necesitaremos 2 terminales)
+
+- Terminal 1: Para abrir el navegador (en ``esta`` carpeta)
+
+```bash
+npm install 
+ng serve --open es para 
+```
+
+- Terminal 2: Iniciar el servidor de Node (en la carpeta ``backend``)
+
+```bash
+cd backend
+npm install 
+nodemon
+```
+*** Si está funcionando correctamente, en la terminal deberá aparecer el mensaje ``Servidor escuchando en: 9090`` ***
+
+---
+
+## 1. DATOS QUE NECESITAS
+
+### 1.1. INICIAR SESIÓN
+
+- **ADMINISTRADOR**
+  - email: ``admin@correo.com``
+  - password:``admin1234``
+
+- **PROGRAMADOR**
+  - email: ``correo@usuario.com``
+  - password: ``user1234``
+
+- **TODOS LOS ROLES**
+  - email:  ``correo@todosroles.com``
+  - password: ``admin1234
+
+### 1.1. DATOS A RELLENAR EN UNA TAREA
+- Descripcción: ``Tarea de prueba``
+- Dificultad: ``XL`` (SOLO SE PERMITE EN EL SERVIDOR XL, L, M, S, XS)
+- Horas previstas: ``10``
+- Horas realizadas: ``0``
+- Porcentaje: ``0``
+- Completada: ``false``
+
+## 2. COMANDOS UTILIZADOS
 
 ### Crear un nuevo proyecto
 
@@ -30,10 +118,9 @@ ng generate interface nueva-interfaz
 
 ```bash
 ng generate class clases/usuario
----
 ```
 
-## POPUP TEMAS
+## POPUP TEMAS (no la he utilizado)
 ```bash
 ng add @angular/material
 ```
@@ -42,13 +129,16 @@ ng add @angular/material
 
 ### APP 
 
-##### COMPONENTES
-- ``consultar-tarea``: Componente que muestra la lista de tareas al Administrador.
+##### COMPONENTES 
+
+Los componentes son los que controlan las vistas de la aplicación. Dividir componentes en pantallas o partes de la aplicación.
+
+- ``consultar-tarea``: Componente que muestra los diferentes tipos de consultas que puede hacer el Admin (Ranking de Programadores, tareas pendientes, tareas realizadas y tareas de un programador en concreto )
 - ``crear-tarea``: Componente que permite crear una nueva tarea al Administrador. 
 - ``inicio-programador``: Componente donde se listan todas las tareas, acceder a su detalle y modificar el porcentaje al Programador.
-- ``login``: Componente que permite el acceso al Administrador y al Programador.
+- ``login``: Componente que permite el acceso a los usuarios (admin - progrmador)
 -  ``modificar-tarea``: Componente que permite modificar una tarea al Administrador.
--  ``tareas``: el menu de inicio del Administrador, aquí se encontrá enlace a crear, modificar y consultar tareas, para el Administrador.
+-  ``tareas``: el menu de inicio, aquí se encontrá enlace a crear, modificar y consultar tareas, para el Administrador. O Listar tareas para el Programador.
 - ``app.component``: Componente principal de la aplicación.
 - ``app.routes``: Archivo de rutas de la aplicación.
 - ``app.config``: Archivo de configuración de la aplicación. Importaremos el módulo HttpClient para poder hacer peticiones HTTP.
@@ -56,10 +146,21 @@ ng add @angular/material
 ##### CLASES
 - ``tarea``: Clase que contiene los atributos de una tarea.
 - ``usuario``: Clase que contiene los atributos de un usuario.
+- ``rol``: Clase que contiene los atributos de los roles.
+- ``tarea-asignada``: Clase que contiene los atributos de una tarea asignada (ranking).
 
 ##### INTERFACES
 - ``tarea``: Interfaz que contiene los atributos de una tarea.
 - ``usuario``: Interfaz que contiene los atributos de un usuario.
+- ``respuesta-login``: Interfaz que contiene los atributos de la respuesta del login. (el usuario y su token)
+- ``tarea-asignada``: Interfaz que contiene los atributos de una tarea asignada (tabla tarea asignada y tarea con sus detalles).
+
+##### ENVIROMENTS
+- ``environment``: Archivo de configuración de la aplicación, con la url del servidor.
+
+```bash
+    baseUrl:'http://localhost:9090/api'
+```
 
 ##### SERVICIOS
 - ``tarea.service``: Servicio que contiene los métodos para la gestión de las tareas.
@@ -105,8 +206,6 @@ export const routes: Routes = [
     {path: 'tareas/inicio', component: InicioProgramadorComponent}, //PROGRAMADOR
 ];
 ```
-
-
 
 ## 4. RUTAS
 

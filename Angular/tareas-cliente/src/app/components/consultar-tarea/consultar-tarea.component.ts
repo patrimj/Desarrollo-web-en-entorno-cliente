@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TareaAsignada } from '../../clases/tarea-asignada';
 import { Tarea } from '../../clases/tarea';
 import { TareaAsignadaPro } from '../../interfaces/tarea-asignada';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consultar-tarea',
@@ -15,19 +16,19 @@ import { TareaAsignadaPro } from '../../interfaces/tarea-asignada';
   styleUrl: './consultar-tarea.component.css'
 })
 export class ConsultarTareaComponent implements OnInit {
-  tareas: Tarea[] = []; // Array de tareas siendo Tarea una interfaz
-  tarea: Tarea = { id: 0, descripcion: '', dificultad: '', horas_previstas: 0, horas_realizadas: 0, porcentaje_realizacion: 0, completada: false };
+  tareas: Tarea[] = []; // Array de tareas 
+  tarea: Tarea = { id: 0, descripcion: '', dificultad: '', horas_previstas: 0, horas_realizadas: 0, porcentaje_realizacion: 0, completada: false }; // la clase Tarea 
 
-  tareasPro: TareaAsignadaPro[] = [];
-  tareaPro: TareaAsignadaPro = { id_tarea: 0, id_usuario: 0, tarea: { id: 0, descripcion: '', dificultad: '', horas_previstas: 0, horas_realizadas: 0, porcentaje_realizacion: 0, completada: false, createdAt: '', updatedAt: '' }, createdAt: '', updatedAt: '' }; // Array de tareas asignadas siendo TareaAsignada una interfaz
+  tareasPro: TareaAsignadaPro[] = []; // Array de tareas asignadas
+  tareaPro: TareaAsignadaPro = { id_tarea: 0, id_usuario: 0, tarea: { id: 0, descripcion: '', dificultad: '', horas_previstas: 0, horas_realizadas: 0, porcentaje_realizacion: 0, completada: false, createdAt: '', updatedAt: '' }, createdAt: '', updatedAt: '' }; // Interface de tareas asignadas con tareas
 
-  tareasAsig: TareaAsignada[] = [];
-  tareaAsig: TareaAsignada = { id: 0, id_tarea: 0, id_usuario: 0, tareas_realizadas: 0 }; // Array de tareas asignadas siendo TareaAsignada una interfaz
+  tareasAsig: TareaAsignada[] = []; // Array del ranking
+  tareaAsig: TareaAsignada = { id: 0, id_tarea: 0, id_usuario: 0, tareas_realizadas: 0 }; //  Tarea asignada es una clase
 
   tipoConsulta = ''; // para el select
   idProgramador = 0; // para el input
 
-  constructor(private tareaService: TareaService) { }
+  constructor(private tareaService: TareaService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarTareas();
@@ -64,8 +65,6 @@ export class ConsultarTareaComponent implements OnInit {
     return this.tareas.length > 0;
   }
 
-
-
   buscar() {
 
     if (this.tipoConsulta === 'programador') {
@@ -74,6 +73,10 @@ export class ConsultarTareaComponent implements OnInit {
         this.tareasPro = tareas;
       });
     }
+  }
+
+  inicio(): void {
+    this.router.navigate(['tareas']);
   }
 
 

@@ -19,12 +19,13 @@ export class CrearTareaComponent {
   horas_realizadas: number = 0;
   porcentaje_realizacion: number = 0;
   completada: boolean = false;
+
   mensaje: string = '';
 
 
-  constructor(private tareaService: TareaService) { }
+  constructor(private tareaService: TareaService, private router: Router) { }
 
-  onSubmit(): void {
+  handleSubmit(): void {
 
     //MENSAJES DE VALIDACION
     const mensajeValidado = validar(this.descripcion, this.dificultad, this.horas_previstas, this.horas_realizadas, this.porcentaje_realizacion, this.completada);
@@ -45,6 +46,9 @@ export class CrearTareaComponent {
 
       }
     );
+  }
+  inicio(): void {
+    this.router.navigate(['tareas']);
   }
 
 }

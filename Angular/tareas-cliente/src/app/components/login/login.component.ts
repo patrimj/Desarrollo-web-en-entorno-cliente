@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
 import { FormsModule } from '@angular/forms';
 import { validar } from './validaciones';
-import { Router } from '@angular/router';
-
+import { Router } from '@angular/router'; // el router es necesario para redirigir a otra pagina
 
 @Component({
   selector: 'app-login',

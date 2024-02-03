@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 const midsJWT = require("../middlewares/validarJWT");
 const midsRoles = require("../middlewares/validarRoles");
 
-// RUTAS PROGRAMADOR
+// ---------------------------- RUTAS PROGRAMADOR ----------------------------
 
 //LISTAR TAREAS LIBRES
 router.get('/tareas/libres', midsJWT.validarJWT, controladorTarea.listarTareasLibres);
@@ -36,10 +36,9 @@ router.put('/tareaPro/modificar/:id',
         check ('completada', 'El campo completada es obligatorio').not().isEmpty(),
     ], midsJWT.validarJWT, controladorTarea.modificarTareaPro);
 
+// ---------------------------- RUTAS ADMIN ----------------------------
 
-// RUTAS ADMIN
-
-///CREAR TAREA
+//CREAR TAREA
 router.post('/tarea/crear',
     [
         check('descripcion', 'La descripción es obligatoria').not().isEmpty(),

@@ -1,7 +1,8 @@
-<div>
-    <h1>Consultar Tareas</h1>
+<div class="container">
+    <h1 class="my-3">Consultar Tareas</h1>
 
-    <select name="tipoConsulta" id="tipoConsulta" [(ngModel)]="tipoConsulta" (change)="cargarTareas()">
+    <select name="tipoConsulta" id="tipoConsulta" [(ngModel)]="tipoConsulta" (change)="cargarTareas()"
+        class="form-select mb-3">
         <option value="ranking">Ranking de Programadores</option>
         <option value="realizadas">Tareas Realizadas</option>
         <option value="pendientes">Tareas Pendientes</option>
@@ -9,14 +10,14 @@
     </select>
 
     <label class="form-label">ID Programador</label>
-    <input type="number" placeholder="Buscar por programador" [(ngModel)]="idProgramador" /> 
+    <input type="number" placeholder="Buscar por programador" [(ngModel)]="idProgramador" class="form-control mb-3" />
 
-    <button (click)="buscar()">Buscar</button>
-    
-    <div>
+    <button (click)="buscar()" class="btn btn-primary mb-3">Buscar</button>
+
+    <div class="mb-3">
         @if (tipoConsulta === 'ranking') {
         <h1>Ranking de Programadores</h1>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -30,7 +31,6 @@
                     <td>{{tareaAsig.id}}</td>
                     <td>{{tareaAsig.id_usuario}}</td>
                     <td>{{tareaAsig.tareas_realizadas}}</td>
-
                 </tr>
                 }
             </tbody>
@@ -38,10 +38,10 @@
         }
     </div>
 
-    <div>
+    <div class="mb-3">
         @if (tipoConsulta === 'realizadas') {
         <h1>Tareas Realizadas</h1>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -70,10 +70,10 @@
         }
     </div>
 
-    <div>
+    <div class="mb-3">
         @if (tipoConsulta === 'pendientes') {
         <h1>Tareas Pendientes</h1>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -100,13 +100,12 @@
             </tbody>
         </table>
         }
-
     </div>
 
-    <div>
+    <div class="mb-3">
         @if (tipoConsulta === 'programador') {
         <h1>Tareas de un Programador</h1>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID tarea</th>
@@ -136,3 +135,5 @@
         </table>
         }
     </div>
+    <button (click)="inicio()" type="button" class="btn btn-secondary mt-3">Volver al inicio</button>
+</div>
