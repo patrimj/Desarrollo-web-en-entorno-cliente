@@ -1,0 +1,20 @@
+<!-- CarlosFdz,AlejandroGarcia-->
+<!-- Alejandro ha tocado esta clase porque no me salia ocialtar un boton-->
+<button (click)="comprobarLogin()">Comprobar Login</button>
+<br>
+<input id="pokemon" value="">
+<button (click)="buscarPokemon()">Buscar Pokemon</button>
+<br>
+@if(pokemon){
+    
+    <p>{{ pokemon | imagenPipe }}</p>
+    <img src="{{ pokemon | imagenPipe }}">
+    
+}
+@else {
+    <output>No lo muestro</output>
+   
+}
+
+
+<router-outlet></router-outlet>
