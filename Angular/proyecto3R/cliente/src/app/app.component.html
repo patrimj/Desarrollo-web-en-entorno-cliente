@@ -1,0 +1,36 @@
+
+
+
+<div class="tic-tac-toe">
+    <h1>3 EN RAYA DAW2</h1>
+    <div *ngFor="let row of board; let i = index" class="row">
+      <div *ngFor="let cell of row; let j = index" class="cell" (click)="mover(i, j)" [class.cross]="cell === 'X'" [class.circle]="cell === 'O'">
+        {{ cell }}
+      </div>
+    </div>
+    <div class="status" *ngIf="ganador">{{ ganador }} GANA!</div>
+    <div class="status" *ngIf="!ganador && estaLLeno()">EMPATE</div>
+
+    <button (click)="buscarRival()">Buscar Rival</button>
+    <br>
+    <br>
+    @if(req){
+        <textarea cols="60" rows="10" id="req" >El botón Buscar Rival busca en el socket si hay alguien más conectado si no encuentra en 5 segundos se debe mostrar que no hay rivales disponibles. El juego se acaba cuando gane uno de los dos jugadores o empate en caso de que se rellenen todas las casillas.
+            
+        </textarea>
+    }
+  </div>
+
+
+
+
+  <br>
+  <br>
+  @if(!req){
+    <button (click)="verRequisitos()">Ver Requisitos</button>
+    }@else {
+        <button (click)="ocultarRequisitos()">Ocultar Requisitos</button> 
+    }
+
+<!--Boton de prueba para que hagaís un mensaje al socket
+<button (click)="enviarMensaje()">Enviar</button>-->
